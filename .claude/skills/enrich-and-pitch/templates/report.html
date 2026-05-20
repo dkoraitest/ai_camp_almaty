@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контекст-360: {{COMPANY_NAME}}</title>
+<style>
+:root{
+  --bg: #FAFAF8;
+  --card: #FFFFFF;
+  --ink: #1A1A1A;
+  --ink-muted: #6B7280;
+  --ink-soft: #9CA3AF;
+  --accent: #059669;
+  --accent-light: #D1FAE5;
+  --accent-dark: #047857;
+  --border: #E5E7EB;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.08);
+}
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+html{ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+  font-size: 15px;
+}
+header{
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 28px;
+  margin-bottom: 44px;
+}
+.brand{
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+header h1{ font-size: 36px; font-weight: 700; margin-top: 8px; letter-spacing: -0.02em; line-height: 1.2; }
+.meta{ color: var(--ink-muted); font-size: 13px; margin-top: 10px; }
+.meta .sep{ margin: 0 8px; color: var(--ink-soft); }
+
+section{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+h2{ font-size: 22px; font-weight: 700; margin-bottom: 18px; color: var(--ink); letter-spacing: -0.01em; }
+h3{ font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+
+.fact-grid{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 14px 28px;
+}
+.fact-grid dt{
+  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 500;
+  padding-top: 1px;
+}
+.fact-grid dd{
+  font-weight: 500;
+  color: var(--ink);
+}
+.fact-grid dd a{ color: var(--accent); text-decoration: none; }
+.fact-grid dd a:hover{ text-decoration: underline; }
+.unconfirmed{
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 13px;
+}
+
+.lpr-card{
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  background: white;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.lpr-card .num{
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 32px;
+  line-height: 1;
+}
+.lpr-card .body strong{ font-size: 16px; }
+.lpr-card .role{ color: var(--ink-muted); font-size: 14px; margin: 2px 0 6px; }
+.lpr-card .why{ font-size: 14px; color: var(--ink-muted); }
+
+.dossier{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 22px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.dossier-header{
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.dossier-header h3{
+  font-size: 24px;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.dossier-role{ color: var(--ink-muted); font-size: 14px; }
+
+.section-row{
+  margin-bottom: 22px;
+}
+.section-row:last-child{ margin-bottom: 0; }
+.section-label{
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.section-row > div:not(.section-label){
+  color: var(--ink);
+  font-size: 15px;
+}
+.section-row ul{
+  list-style: none;
+  padding-left: 0;
+}
+.section-row ul li{
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.section-row ul li:before{
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.angle-box{
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  padding: 18px 22px;
+  margin: 24px 0 18px;
+  border-radius: 0 10px 10px 0;
+}
+.angle-label{
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.angle-body{ color: var(--accent-dark); font-weight: 500; }
+
+.message-box{
+  background: #0F1419;
+  color: #F5F7FA;
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 14px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.message-box pre{
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 15px;
+  line-height: 1.7;
+  padding-right: 90px;
+}
+.copy-btn{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.08);
+  color: #F5F7FA;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.copy-btn:hover{ background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.3); }
+.copy-btn.copied{ background: var(--accent); border-color: var(--accent); color: white; }
+
+.sources-list{
+  list-style: none;
+  padding: 0;
+}
+.sources-list li{
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+}
+.sources-list li:before{
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+.sources-list a{
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+.sources-list a:hover{ text-decoration: underline; }
+.sources-list .label{
+  color: var(--ink-muted);
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+footer{
+  margin-top: 44px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.8;
+}
+.tag{
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.tag-muted{
+  background: #F3F4F6;
+  color: var(--ink-muted);
+}
+.no-data{
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 14px;
+}
+@media (max-width: 640px){
+  body{ padding: 24px 16px 64px; }
+  header h1{ font-size: 28px; }
+  section, .dossier{ padding: 22px 18px; }
+  .fact-grid{ grid-template-columns: 1fr; gap: 6px 0; }
+  .fact-grid dd{ margin-bottom: 14px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">AI Sales Toolkit · Outbound Research</div>
+  <h1>{{COMPANY_NAME}}</h1>
+  <div class="meta">
+    БИН {{BIN}}<span class="sep">·</span>{{TIMESTAMP}}<span class="sep">·</span><span class="tag">{{STACK_TAG}}</span>
+  </div>
+</header>
+
+<!-- ====================== ПРОФИЛЬ КОМПАНИИ ====================== -->
+<section>
+  <h2>Профиль компании</h2>
+  <dl class="fact-grid">
+{{COMPANY_FACTS}}
+  </dl>
+</section>
+
+<!-- ====================== ЛПР LIST ====================== -->
+<section>
+  <h2>Идентифицированные ЛПР</h2>
+{{LPR_CARDS}}
+</section>
+
+<!-- ====================== DOSSIERS ====================== -->
+<h2 style="margin: 36px 0 22px; font-size: 26px; letter-spacing: -0.01em;">Контекст и сообщения</h2>
+
+{{DOSSIERS}}
+
+<!-- ====================== SOURCES ====================== -->
+<section>
+  <h2>Источники</h2>
+  <ul class="sources-list">
+{{SOURCES}}
+  </ul>
+</section>
+
+<footer>
+  Использовано: <span class="tag">{{STACK}}</span><span class="sep">·</span>Время прогона: {{RUNTIME}}<br>
+  AI Sales Toolkit · AI Surfers · AI Camp Almaty 2026
+</footer>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.parentElement.querySelector('pre').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = '✓ Скопировано';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  });
+});
+</script>
+</body>
+</html>
+
+<!-- ===================================================================
+TEMPLATE PLACEHOLDERS — substitute when generating report:
+
+{{COMPANY_NAME}}    — полное название компании
+{{BIN}}             — БИН
+{{TIMESTAMP}}       — дата+время в формате "20 мая 2026, 14:30"
+{{STACK_TAG}}       — короткий тег "free" / "free+apify" / "free+goszakup"
+{{STACK}}           — полная фраза "free стек" / "free + apify + goszakup"
+{{RUNTIME}}         — "~90 сек" / "~2 мин"
+
+{{COMPANY_FACTS}}   — повторяющиеся <dt>label</dt><dd>value (источник: <a>...</a>)</dd>
+                      Примеры labels: Юридическое название, Статус, Директор,
+                      Дата регистрации, Адрес, ОКЭД, Размер, Сайт,
+                      Активность найма, Госконтракты (если goszakup)
+
+{{LPR_CARDS}}       — повторяющиеся блоки:
+<div class="lpr-card">
+  <div class="num">1</div>
+  <div class="body">
+    <strong>Имя Фамилия</strong>
+    <div class="role">Должность</div>
+    <div class="why">Почему ЛПР для нашего оффера</div>
+  </div>
+</div>
+
+{{DOSSIERS}}        — повторяющиеся блоки per-ЛПР:
+<section class="dossier">
+  <div class="dossier-header">
+    <h3>Имя Фамилия</h3>
+    <div class="dossier-role">Должность</div>
+  </div>
+
+  <div class="section-row">
+    <div class="section-label">Background</div>
+    <div>...</div>
+  </div>
+
+  <div class="section-row">
+    <div class="section-label">Recent activity (3-6 мес)</div>
+    <ul>
+      <li>событие 1</li>
+      <li>событие 2</li>
+    </ul>
+  </div>
+
+  <div class="section-row">
+    <div class="section-label">Themes</div>
+    <div>о чём консистентно говорит</div>
+  </div>
+
+  <div class="angle-box">
+    <div class="angle-label">Угол захода</div>
+    <div class="angle-body">...пересечение их контекста × наш оффер</div>
+  </div>
+
+  <div class="message-box">
+    <button class="copy-btn">Скопировать</button>
+    <pre>Здравствуйте, [Имя]!
+
+Сообщение из 4 предложений с конкретным personal context,
+нашей связью, value prop под их контекст и low-friction next step.
+
+С уважением,
+[Имя отправителя]</pre>
+  </div>
+</section>
+
+{{SOURCES}}         — повторяющиеся <li>:
+<li><span class="label">adata.kz:</span><a href="...">...</a></li>
+
+Для unconfirmed данных используй CSS class "unconfirmed":
+<dd><span class="unconfirmed">не подтверждено</span></dd>
+
+Для пустых данных:
+<div class="no-data">данные недоступны на free-стеке</div>
+================================================================ -->
