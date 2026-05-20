@@ -392,13 +392,152 @@ formation moment коммерческой функции после Контур
 
 ---
 
-### Stage 7: Update HTML — заменить STUB на FULL
+### Stage 7: Update HTML — Step 2 + regenerate hooks (v1 → v2)
+
+**Двойная задача:**
+1. Заменить STUB Step 2 section на FULL market context
+2. **Regenerate person-card hooks** с учётом market context → новая версия v2
 
 После Stage 6:
 
-1. **Перечитай файл отчёта**: `Read: reports/<slug>-<timestamp>.html`
+#### 7a. Regenerate hooks (Шаг 2 evolution)
 
-2. **Найди STUB-section** (`<section class="step2-stub">`) и **замени её** на FULL:
+Для каждого PRIMARY ЛПР:
+- Возьми CURRENT hook (v1) — он стал PREVIOUS
+- Сгенерируй НОВЫЙ hook (v2) с учётом market context (AЗРK pressure, competitor moves, regulatory tailwinds и т.д.)
+- v2 должен быть **резко сильнее v1** — если не сильнее, не меняй (нет смысла в evolution)
+
+**Пример Documentolog:**
+- v1 (Step 1): «Контур + partnership lead hiring — formation moment коммерческой функции»
+- v2 (Step 2 + market): «Вы под AЗРK давлением + scaling cross-border + sales-стек — третий критичный вектор. Защита доли требует все три»
+
+v2 ВКЛЮЧАЕТ контекст v1 + слой market awareness. Защита тезиса через market intelligence.
+
+#### 7b. Update HTML
+
+1. **Найди STUB Step 2 section** → замени на FULL market context (как раньше)
+
+2. **Найди person-card `С чего зайти` block** → перестрой как hook-versions:
+
+```html
+<div class="person-block">
+  <div class="block-label">С чего зайти</div>
+  <div class="hook-versions">
+
+    <div class="hook-version current">
+      <div class="hook-version-meta">
+        <span class="hook-version-badge">v2 · + Market</span>
+        <span class="hook-version-status">Current — после Шага 2</span>
+      </div>
+      <div class="hook-version-body">{{HOOK_V2_BODY}}</div>
+    </div>
+
+    <div class="hook-version previous">
+      <div class="hook-version-meta">
+        <span class="hook-version-badge">v1 · Free baseline</span>
+        <span class="hook-version-status">Предыдущая версия</span>
+      </div>
+      <div class="hook-version-body">{{HOOK_V1_BODY}}</div>
+    </div>
+
+    <div class="hook-version stub">
+      <div class="hook-version-meta">
+        <span class="hook-version-badge">v3 · + Paid</span>
+        <span class="hook-version-status">Шаг 3 не запущен</span>
+      </div>
+      <div class="hook-version-body">
+        Требует <code>$APIFY_API_KEY</code> в .env. Apify LinkedIn deep dive по ЛПР → личные посты, активность, network signals. Хук станет ещё точнее.
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+3. **Также regenerate message draft** в dossier с учётом v2 hook (показывает evolved version в чате/email).
+
+4. Сохрани файл, открой:
+   ```bash
+   open "$REPORT_PATH"
+   ```
+
+5. В чате: «✅ Шаг 2 добавлен. Обнови вкладку (Cmd+R). Заметь: hook эволюционировал — v2 теперь учитывает регуляторный контекст и конкурентов.»
+
+---
+
+### Stage 8: Шаг 3 — Paid sources (опционально, если есть keys)
+
+**Сразу после Stage 7** (после Шаг 2 готов) — снова предложение в чате:
+
+```
+🔬 Шаг 3 — Paid sources (LinkedIn deep dive + goszakup)
+
+Хочешь добавить личные данные ЛПР через paid sources?
+- Apify LinkedIn Profile + последние 10 постов
+- (опционально) goszakup history если есть token
+
+Это ещё ~2-3 мин, hook эволюционирует в v3 с laser-точным контекстом.
+
+Скажи «да» / «запусти Шаг 3».
+```
+
+**Если пользователь сказал «да»:**
+
+1. Проверь `$APIFY_API_KEY` в env:
+   ```bash
+   if [ -f .env ]; then source .env; fi
+   if [ -z "$APIFY_API_KEY" ]; then
+     echo "Нет APIFY_API_KEY. Положи в .env."; exit
+   fi
+   ```
+
+2. Найди LinkedIn URL primary ЛПР (из Stage 3 — если был snippet, или WebSearch заново)
+
+3. Вызови Apify LinkedIn Profile Scraper:
+   ```bash
+   curl -X POST "https://api.apify.com/v2/acts/dev_fusion~linkedin-profile-scraper/run-sync-get-dataset-items?token=$APIFY_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"profileUrls": ["https://www.linkedin.com/in/<lpr-handle>"]}'
+   ```
+
+   Альтернативный actor если первый не работает: `bebity/linkedin-premium-actor`, `curious_coder/linkedin-profile-scraper`.
+
+4. Из ответа извлеки:
+   - Recent posts (последние 10)
+   - About / Summary
+   - Skills и эндорсменты
+   - Network connections (high-profile)
+   - Recent activity (likes, comments, reposts)
+
+5. **Regenerate hook v3** — на основе личных постов + market context + everything:
+   - v3 должен включать **конкретный recent LinkedIn signal** (цитата из поста, недавняя активность)
+   - «Видел ваш пост от [дата] про [тема] — пересекается с тем что вы делаете в [продукт] + текущий контекст рынка»
+
+6. Update HTML — Stage 9.
+
+---
+
+### Stage 9: Update HTML — Step 3 → v3 current
+
+1. **Найди person-card hook-versions**:
+   - v2 (current) → переезжает в .previous
+   - v3 (новый) → становится .current на самом верху
+   - v1 (previous) → остаётся .previous, но ниже v2
+   - Stub v3 → удаляется
+
+2. **Также regenerate message** в dossier с v3 хуком.
+
+3. **Опционально:** добавить новую секцию `step3-personal-deep-dive` с raw LinkedIn data (свёрнуто по умолчанию через `<details>`).
+
+4. Open + chat:
+   ```
+   ✅ Шаг 3 готов. Hook теперь v3 — с personal LinkedIn context.
+   Обнови вкладку (Cmd+R).
+   ```
+
+---
+
+### Market context HTML template (для замены STUB в Stage 7)
 
 ```html
 <section class="step2-full">
@@ -443,20 +582,6 @@ formation moment коммерческой функции после Контур
   </div>
 </section>
 ```
-
-3. **Запиши обновлённый HTML** на тот же путь через Edit или Write.
-
-4. **Открой/обнови в браузере:**
-   ```bash
-   open "$REPORT_PATH"
-   ```
-   Note: Chrome не auto-reload локальные файлы. Сообщи пользователю явно: **«Обнови вкладку (Cmd+R) — Шаг 2 добавлен»**.
-
-5. **Финальный ответ в чате:**
-   ```
-   ✅ Шаг 2 добавлен в отчёт.
-   Обнови вкладку браузера (Cmd+R), market context появится после Источников.
-   ```
 
 ## Output Format (для пользователя в чате)
 
