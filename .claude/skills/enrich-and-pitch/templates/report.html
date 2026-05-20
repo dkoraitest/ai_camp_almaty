@@ -298,6 +298,30 @@ footer{
 .message-version .copy-btn.copied{ background: var(--accent); border-color: var(--accent); }
 .what-changed{ background: #FEF3C7; border-left: 2px solid #D97706; padding: 8px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #78350F; margin-top: 8px; line-height: 1.5; }
 .what-changed strong{ color: #92400E; }
+
+/* Added-content highlights — visual diff between versions */
+.added-v2{ background: rgba(99, 102, 241, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(99, 102, 241, 0.5); }
+.added-v3{ background: rgba(5, 150, 105, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
+.added-v4{ background: rgba(217, 119, 6, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
+.message-version.current .added-v2{ background: rgba(129, 140, 248, 0.30); border-color: rgba(129, 140, 248, 0.7); }
+.message-version.current .added-v3{ background: rgba(16, 185, 129, 0.35); border-color: rgba(16, 185, 129, 0.8); }
+.message-version.current .added-v4{ background: rgba(245, 158, 11, 0.35); border-color: rgba(245, 158, 11, 0.8); }
+
+/* Framework block — quality matrix + message anatomy */
+.framework-block{ background: white; border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; margin-bottom: 22px; }
+.framework-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.framework-col h4{ font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.framework-col ul{ list-style: none; padding: 0; counter-reset: li; }
+.framework-col ul li{ padding-left: 18px; position: relative; margin-bottom: 8px; font-size: 14px; line-height: 1.45; color: var(--ink); }
+.framework-col ul li:before{ content: counter(li); counter-increment: li; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 700; font-size: 13px; }
+.framework-col ul li strong{ font-weight: 600; }
+.framework-col ul li em{ color: var(--ink-muted); font-style: normal; font-size: 13px; display: block; margin-top: 1px; }
+.legend-row{ display: flex; gap: 18px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--ink-muted); flex-wrap: wrap; }
+.legend-row .swatch{ display: inline-block; padding: 1px 6px; border-radius: 3px; margin-right: 4px; font-weight: 600; }
+.legend-row .swatch.v2{ background: rgba(99, 102, 241, 0.18); color: #4338CA; border-bottom: 2px solid rgba(99, 102, 241, 0.5); }
+.legend-row .swatch.v3{ background: rgba(5, 150, 105, 0.18); color: #047857; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
+.legend-row .swatch.v4{ background: rgba(217, 119, 6, 0.18); color: #92400E; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
+@media (max-width: 640px){ .framework-row{ grid-template-columns: 1fr; gap: 22px; } }
 .tag-muted{
   background: #F3F4F6;
   color: var(--ink-muted);
@@ -909,8 +933,39 @@ details summary:hover{ background: #F3F4F6; }
 <div class="tab-panel" data-panel="communication">
 
 <div class="comm-intro">
-  <h2>Эволюция захода и сообщений</h2>
-  <p>Каждый шаг разведки добавляет персонализационных точек → hook и сообщение эволюционируют. Latest версия сверху, предыдущие приглушённые ниже. <strong>Показывает, как улучшается коммуникация с каждым слоем data.</strong></p>
+  <h2>Как менялся заход и сообщение</h2>
+  <p>Каждый шаг исследования добавляет точки персонализации → заход и сообщение становятся точнее. Свежая версия сверху, предыдущие — приглушённые ниже. <strong>Видно, как сообщение улучшается с каждым новым слоем данных.</strong></p>
+</div>
+
+<!-- Methodology block: 5 quality dimensions + message anatomy + color legend -->
+<div class="framework-block">
+  <div class="framework-row">
+    <div class="framework-col">
+      <h4>📐 5 измерений качества</h4>
+      <ul>
+        <li><strong>Конкретика</strong> <em>привязка к этой компании / человеку, не template</em></li>
+        <li><strong>Свежесть сигнала</strong> <em>recency: вакансия (дни) → рынок (мес) → пост LinkedIn (часы)</em></li>
+        <li><strong>Их язык vs наш</strong> <em>прямая цитата vs пересказ vs наш стандартный</em></li>
+        <li><strong>Доказательность</strong> <em>получатель может проверить, что мы готовились</em></li>
+        <li><strong>Peer-feel</strong> <em>коллега пишет vs холодный продавец</em></li>
+      </ul>
+    </div>
+    <div class="framework-col">
+      <h4>✏️ Анатомия письма</h4>
+      <ul>
+        <li><strong>Personal context</strong> <em>1 фраза: конкретное событие/факт из их публичной активности</em></li>
+        <li><strong>Why now</strong> <em>1 фраза: связь с нашим продуктом и моментом</em></li>
+        <li><strong>Specific value</strong> <em>1 фраза: что именно решаем под их контекст</em></li>
+        <li><strong>Low-friction CTA</strong> <em>1 фраза: 15-20 минут, конкретный день</em></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legend-row">
+    Подсветка ниже:
+    <span><span class="swatch v2">синий</span> добавлено после Шага 2 (Рынок)</span>
+    <span><span class="swatch v3">зелёный</span> добавлено после Шага 3 (LinkedIn)</span>
+    <span><span class="swatch v4">оранжевый</span> добавится после Шага 4 (Соцсети)</span>
+  </div>
 </div>
 
 {{COMM_CARDS}}
