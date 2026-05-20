@@ -264,13 +264,59 @@ footer{
   font-size: 14px;
 }
 
-/* Hiring Intelligence */
+/* Hiring Intelligence — compact */
+.hiring-stats{
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.hiring-stats a{ color: var(--accent); text-decoration: none; }
+.hiring-stats .num{ color: var(--ink); font-weight: 600; }
+
+.hiring-blocks{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.hiring-block-label{
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.hiring-list{
+  list-style: none;
+  padding: 0;
+}
+.hiring-list li{
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.hiring-list li:before{
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hiring-list li.star{ font-weight: 600; color: var(--ink); }
+.hiring-list li.star:before{ content: '⭐'; left: 0; }
+.hiring-list li.gap:before{ content: '×'; color: #DC2626; font-weight: 700; }
+.hiring-list strong{ color: var(--ink); }
+
 .hiring-insight{
   background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
   border-left: 3px solid #D97706;
-  padding: 18px 22px;
+  padding: 16px 20px;
   border-radius: 0 10px 10px 0;
-  margin-bottom: 20px;
 }
 .hiring-insight-label{
   font-size: 11px;
@@ -278,55 +324,14 @@ footer{
   text-transform: uppercase;
   color: #92400E;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .hiring-insight-body{
   color: #78350F;
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.55;
+  font-size: 14px;
 }
-.role-breakdown{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin-top: 16px;
-}
-.role-bucket{
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 16px;
-  background: white;
-}
-.role-bucket-title{
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.role-bucket-count{
-  background: var(--accent-light);
-  color: var(--accent-dark);
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-}
-.role-bucket-list{
-  list-style: none;
-  padding: 0;
-  font-size: 13px;
-  color: var(--ink-muted);
-  line-height: 1.5;
-}
-.role-bucket-list li{ margin-bottom: 2px; }
-.role-source{
-  margin-top: 12px;
-  font-size: 12px;
-  color: var(--ink-muted);
-}
-.role-source a{ color: var(--accent); text-decoration: none; }
 
 /* Collapsible details */
 details{
@@ -409,17 +414,26 @@ details summary:hover{ background: #F3F4F6; }
 <section>
   <h2>Hiring intelligence</h2>
 
+  <div class="hiring-stats">{{HIRING_STATS}}</div>
+
+  <div class="hiring-blocks">
+    <div>
+      <div class="hiring-block-label">Кого нанимают</div>
+      <ul class="hiring-list">
+{{HIRING_WHO}}
+      </ul>
+    </div>
+    <div>
+      <div class="hiring-block-label">Где нет людей</div>
+      <ul class="hiring-list">
+{{HIRING_GAPS}}
+      </ul>
+    </div>
+  </div>
+
   <div class="hiring-insight">
-    <div class="hiring-insight-label">Главный инсайт</div>
-    <div class="hiring-insight-body">{{HIRING_INSIGHT}}</div>
-  </div>
-
-  <div class="role-breakdown">
-{{ROLE_BUCKETS}}
-  </div>
-
-  <div class="role-source">
-    Источник: {{HIRING_SOURCE}}
+    <div class="hiring-insight-label">Что это значит</div>
+    <div class="hiring-insight-body">{{HIRING_MEANING}}</div>
   </div>
 </section>
 
@@ -484,28 +498,25 @@ TEMPLATE PLACEHOLDERS — substitute when generating report:
                           БИН, юр. название, директор юр.лица, дата регистрации,
                           адрес, ОКЭД, VAT, Astana Hub, регистрирующий орган.
 
-{{HIRING_INSIGHT}}      — одно ёмкое предложение-инсайт по найму:
-                          что компания НА САМОМ ДЕЛЕ делает (расширение,
-                          формирование новой функции, замена). Пример:
-                          «Открывает позицию руководителя международных
-                          партнёрских продаж — формируется новая
-                          коммерческая функция вокруг недавней интеграции
-                          с Контур (Россия).»
+{{HIRING_STATS}}        — одна строка статистики (~80-120 символов):
+                          "<span class='num'>N вакансий</span> · Астана X / Алматы Y · ЗП Aк–BМ ₸ · <a href='hh.kz/...'>источник</a>"
 
-{{ROLE_BUCKETS}}        — повторяющиеся блоки категорий вакансий:
-<div class="role-bucket">
-  <div class="role-bucket-title">
-    Sales & Customer Success
-    <span class="role-bucket-count">5 ролей</span>
-  </div>
-  <ul class="role-bucket-list">
-    <li>Customer Success Manager (Астана) — 450-700к ₸</li>
-    <li>Customer Solutions Engineer x2</li>
-    <li><strong>Руководитель международных партнёрских продаж</strong> ⭐</li>
-  </ul>
-</div>
+{{HIRING_WHO}}          — 3-5 <li> «кого нанимают»: группировка по функциям + ⭐ для критичных ролей:
+<li>Customer Success — <strong>4 роли</strong> (треть всех вакансий)</li>
+<li>Engineering — 3 роли (Frontend, PHP, SysAdmin)</li>
+<li class="star">Руководитель международных партнёрских продаж (senior 6+)</li>
 
-{{HIRING_SOURCE}}       — ссылка на hh.kz страницу работодателя
+{{HIRING_GAPS}}         — 2-3 <li class="gap"> «где НЕТ людей»: значимые отсутствия:
+<li class="gap">0 AI/ML — внутренняя команда укомплектована</li>
+<li class="gap">0 системных Sales (только 1 partnership)</li>
+
+{{HIRING_MEANING}}      — 1-2 предложения: ЧТО это значит для нашего outreach.
+                          Не дублирует bullets. Добавляет интерпретацию.
+                          Пример: «Скейлят CS на существующей базе + формируют
+                          новую международную партнёрскую функцию после
+                          интеграции с Контур. Sales infrastructure ещё не
+                          построена — окно открыто, тулсы можно встроить
+                          ДО legacy.»
 
 {{LPR_CARDS}}       — повторяющиеся блоки:
 <div class="lpr-card">
