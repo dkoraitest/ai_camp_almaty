@@ -64,22 +64,52 @@ End-to-end пайплайн для персонализированного outb
    - `<domain>/news` или `<domain>/press`
    - Если WebFetch падает на SSL → fallback: `WebSearch site:<domain> "<keyword>"`
 
-4. **WebSearch hh.kz**:
+4. **WebSearch hh.kz** для employer_id:
    - `site:hh.kz "<company>" вакансии` → найди employer URL вида `hh.kz/employer/{id}`
-   - **WebFetch** employer-страницу → количество открытых вакансий + сфера найма
-   - Hiring-сигналы = приоритеты компании
 
-5. **WebSearch news**:
+5. **WebFetch ПОЛНЫЙ список вакансий** (не employer-страницу):
+   - URL pattern: `https://almaty.hh.kz/search/vacancy?employer_id={id}&items_on_page=50`
+   - Если редирект — следуй на almaty.hh.kz или astana.hh.kz
+   - Извлеки список ВСЕХ открытых вакансий: title, локация, диапазон зарплаты, требуемый опыт
+
+6. **Hiring intelligence — ОБЯЗАТЕЛЬНАЯ аналитика, не просто счётчик**
+
+   **A. Категоризируй роли** в 4-6 бакетов:
+   - Sales / Business Development / Partnership
+   - Customer Success / Customer Solutions
+   - Engineering / Tech (Frontend / Backend / DevOps / Mobile)
+   - Product / Design / Analytics
+   - Operations / Legal / Finance / HR
+   - AI / ML / Research (если есть)
+
+   **B. Найди «звёздные» позиции** — те что КРИТИЧНЫ для нашего outbound angle:
+   - Senior leadership (Head of X, Director, Руководитель направления)
+   - Roles связанные с recent events компании (например, после интеграции с партнёром ищут partnership lead)
+   - Roles индикирующие formation новой функции
+
+   **C. Сгенерируй ОДИН «главный инсайт» — 1-2 предложения** что компания **на самом деле делает** по hiring patterns:
+   - Какой моментум: formation новой функции / scaling существующей / replacement?
+   - Как связан с context из Stage 1 (новости, события)?
+   - Пример good insight: «Открывают senior партнёрских продаж после февральской интеграции с Контур — формируют международную коммерческую функцию с нуля. Идеальный момент интегрироваться в их sales-stack до того, как закрепится legacy.»
+   - Пример bad insight: «Активно нанимают, открыты 13 вакансий» (просто счётчик, без интерпретации)
+
+   **D. Опциональные сигналы:**
+   - Salary ranges = proxy зрелости бюджета и культуры
+   - География (концентрация / распределение по городам)
+   - Уровни (junior-heavy = scaling/training-mode, senior-heavy = restructuring/turnaround)
+   - Отсутствие категорий (e.g. «0 AI-вакансий» = либо internal team укомплектована, либо outsource)
+
+7. **WebSearch news**:
    - `"<company>" 2026 OR 2025 новости`
    - `"<company>" интервью OR пресс-релиз`
    - `"<company>" "назначен" OR "возглавил" OR "новый руководитель"`
 
-6. **(Опционально, paid)** Если `$GOSZAKUP_TOKEN` доступен:
+8. **(Опционально, paid)** Если `$GOSZAKUP_TOKEN` доступен:
    - REST: `GET https://ows.goszakup.gov.kz/v3/subject/biin/{BIN}` + Bearer header → детали + сотрудники
    - REST: `GET https://ows.goszakup.gov.kz/v3/contract?supplier_biin={BIN}` → выигранные госконтракты
    - REST: `GET https://ows.goszakup.gov.kz/v3/rnu/{BIN}` → проверка по реестру недобросовестных
 
-**Output Stage 1:** структурированный профиль компании, каждый факт привязан к источнику (URL).
+**Output Stage 1:** структурированный профиль компании + hiring intelligence (1 главный инсайт + категоризация ролей + ⭐ звёздные позиции). Каждый факт с источником.
 
 ---
 

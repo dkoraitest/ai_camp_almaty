@@ -263,6 +263,112 @@ footer{
   font-style: italic;
   font-size: 14px;
 }
+
+/* Hiring Intelligence */
+.hiring-insight{
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border-left: 3px solid #D97706;
+  padding: 18px 22px;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 20px;
+}
+.hiring-insight-label{
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #92400E;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.hiring-insight-body{
+  color: #78350F;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.role-breakdown{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.role-bucket{
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  background: white;
+}
+.role-bucket-title{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.role-bucket-count{
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.role-bucket-list{
+  list-style: none;
+  padding: 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.role-bucket-list li{ margin-bottom: 2px; }
+.role-source{
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.role-source a{ color: var(--accent); text-decoration: none; }
+
+/* Collapsible details */
+details{
+  background: #F9FAFB;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 18px;
+  overflow: hidden;
+}
+details summary{
+  padding: 14px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink-muted);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+details summary::-webkit-details-marker{ display: none; }
+details summary:after{
+  content: '▾';
+  color: var(--ink-soft);
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+details[open] summary:after{ transform: rotate(180deg); }
+details summary:hover{ background: #F3F4F6; }
+.details-body{
+  padding: 4px 20px 20px;
+  border-top: 1px solid var(--border);
+  background: white;
+}
+.details-body .fact-grid{
+  grid-template-columns: 180px 1fr;
+  gap: 10px 24px;
+}
+.details-body .fact-grid dt{ font-size: 12px; }
+.details-body .fact-grid dd{ font-size: 13px; }
+
 @media (max-width: 640px){
   body{ padding: 24px 16px 64px; }
   header h1{ font-size: 28px; }
@@ -286,8 +392,35 @@ footer{
 <section>
   <h2>Профиль компании</h2>
   <dl class="fact-grid">
-{{COMPANY_FACTS}}
+{{COMPANY_FACTS_CORE}}
   </dl>
+
+  <details>
+    <summary>Юридические и регистрационные данные</summary>
+    <div class="details-body">
+      <dl class="fact-grid">
+{{COMPANY_FACTS_LEGAL}}
+      </dl>
+    </div>
+  </details>
+</section>
+
+<!-- ====================== HIRING INTELLIGENCE ====================== -->
+<section>
+  <h2>Hiring intelligence</h2>
+
+  <div class="hiring-insight">
+    <div class="hiring-insight-label">Главный инсайт</div>
+    <div class="hiring-insight-body">{{HIRING_INSIGHT}}</div>
+  </div>
+
+  <div class="role-breakdown">
+{{ROLE_BUCKETS}}
+  </div>
+
+  <div class="role-source">
+    Источник: {{HIRING_SOURCE}}
+  </div>
 </section>
 
 <!-- ====================== ЛПР LIST ====================== -->
@@ -343,10 +476,36 @@ TEMPLATE PLACEHOLDERS — substitute when generating report:
 {{STACK}}           — полная фраза "free стек" / "free + apify + goszakup"
 {{RUNTIME}}         — "~90 сек" / "~2 мин"
 
-{{COMPANY_FACTS}}   — повторяющиеся <dt>label</dt><dd>value (источник: <a>...</a>)</dd>
-                      Примеры labels: Юридическое название, Статус, Директор,
-                      Дата регистрации, Адрес, ОКЭД, Размер, Сайт,
-                      Активность найма, Госконтракты (если goszakup)
+{{COMPANY_FACTS_CORE}}  — КОМПАКТНЫЙ блок: что важно для outreach.
+                          Например: Сектор, Продукт, Размер, География,
+                          Ключевые клиенты, Recent события 2024-2026.
+
+{{COMPANY_FACTS_LEGAL}} — collapsible блок: формальные/регистрационные данные.
+                          БИН, юр. название, директор юр.лица, дата регистрации,
+                          адрес, ОКЭД, VAT, Astana Hub, регистрирующий орган.
+
+{{HIRING_INSIGHT}}      — одно ёмкое предложение-инсайт по найму:
+                          что компания НА САМОМ ДЕЛЕ делает (расширение,
+                          формирование новой функции, замена). Пример:
+                          «Открывает позицию руководителя международных
+                          партнёрских продаж — формируется новая
+                          коммерческая функция вокруг недавней интеграции
+                          с Контур (Россия).»
+
+{{ROLE_BUCKETS}}        — повторяющиеся блоки категорий вакансий:
+<div class="role-bucket">
+  <div class="role-bucket-title">
+    Sales & Customer Success
+    <span class="role-bucket-count">5 ролей</span>
+  </div>
+  <ul class="role-bucket-list">
+    <li>Customer Success Manager (Астана) — 450-700к ₸</li>
+    <li>Customer Solutions Engineer x2</li>
+    <li><strong>Руководитель международных партнёрских продаж</strong> ⭐</li>
+  </ul>
+</div>
+
+{{HIRING_SOURCE}}       — ссылка на hh.kz страницу работодателя
 
 {{LPR_CARDS}}       — повторяющиеся блоки:
 <div class="lpr-card">
