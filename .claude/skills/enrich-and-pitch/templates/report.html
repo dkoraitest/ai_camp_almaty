@@ -254,6 +254,50 @@ footer{
   font-weight: 600;
   letter-spacing: 0.04em;
 }
+
+/* Tabs */
+.tabs{ display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 28px; position: sticky; top: 0; background: var(--bg); padding-top: 4px; z-index: 10; }
+.tab-btn{ background: transparent; border: none; padding: 14px 22px; font-size: 14px; font-weight: 600; color: var(--ink-muted); cursor: pointer; border-bottom: 2px solid transparent; font-family: inherit; transition: all 0.15s; margin-bottom: -2px; }
+.tab-btn:hover{ color: var(--ink); }
+.tab-btn.active{ color: var(--accent); border-bottom-color: var(--accent); }
+.tab-btn .count{ display: inline-block; background: var(--accent-light); color: var(--accent-dark); padding: 1px 7px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+.tab-btn.active .count{ background: var(--accent); color: white; }
+.tab-panel{ display: none; }
+.tab-panel.active{ display: block; }
+
+/* Communication tab */
+.comm-intro{ background: linear-gradient(135deg, #F0FDF4 0%, white 60%); border: 1px solid var(--accent-light); border-radius: 14px; padding: 24px 28px; margin-bottom: 22px; }
+.comm-intro h2{ color: var(--accent-dark); margin-bottom: 6px; }
+.comm-intro p{ color: var(--ink); font-size: 14px; line-height: 1.6; margin: 0; }
+.comm-card{ background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px; margin-bottom: 22px; box-shadow: var(--shadow); }
+.comm-card-header{ padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+.comm-card-header h3{ font-size: 24px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+.comm-card-header .person-role{ color: var(--ink-muted); font-size: 14px; }
+.evolution-section{ margin-bottom: 28px; }
+.evolution-section:last-child{ margin-bottom: 0; }
+.evolution-label{ font-size: 12px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-muted); font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+/* Message versions */
+.message-versions{ display: flex; flex-direction: column; gap: 12px; }
+.message-version{ border-radius: 10px; padding: 18px 22px; border: 1px solid var(--border); background: #FAFAFA; position: relative; }
+.message-version.current{ background: #0F1419; color: #F5F7FA; border: 2px solid var(--accent); padding: 22px 26px; }
+.message-version.previous{ background: #F9FAFB; opacity: 0.7; border: 1px dashed var(--border); }
+.message-version.stub{ background: repeating-linear-gradient(45deg, #FAFAFA, #FAFAFA 8px, #F3F4F6 8px, #F3F4F6 16px); border: 1px dashed #D1D5DB; text-align: center; }
+.message-version-meta{ display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.message-version-badge{ font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; }
+.message-version.current .message-version-badge{ background: var(--accent); color: white; }
+.message-version.previous .message-version-badge{ background: #E5E7EB; color: var(--ink-muted); }
+.message-version.stub .message-version-badge{ background: #F3F4F6; color: var(--ink-soft); }
+.message-version-status{ font-size: 11px; color: var(--ink-soft); font-weight: 500; }
+.message-version.current .message-version-status{ color: rgba(245,247,250,0.6); }
+.message-version pre{ font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; white-space: pre-wrap; font-size: 14.5px; line-height: 1.65; padding-right: 100px; margin: 0; color: inherit; }
+.message-version.previous pre{ font-size: 13.5px; color: var(--ink-muted); }
+.message-version .copy-btn{ position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.08); color: #F5F7FA; border: 1px solid rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: inherit; font-weight: 500; }
+.message-version.previous .copy-btn{ background: var(--ink-soft); color: white; border: none; }
+.message-version .copy-btn:hover{ background: rgba(255,255,255,0.2); }
+.message-version .copy-btn.copied{ background: var(--accent); border-color: var(--accent); }
+.what-changed{ background: #FEF3C7; border-left: 2px solid #D97706; padding: 8px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #78350F; margin-top: 8px; line-height: 1.5; }
+.what-changed strong{ color: #92400E; }
 .tag-muted{
   background: #F3F4F6;
   color: var(--ink-muted);
@@ -703,6 +747,15 @@ details summary:hover{ background: #F3F4F6; }
   </div>
 </header>
 
+<!-- ====================== TABS ====================== -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="analytics">Аналитика<span class="count">что мы знаем</span></button>
+  <button class="tab-btn" data-tab="communication">Коммуникация<span class="count">как мы пишем</span></button>
+</div>
+
+<!-- ====================== TAB: АНАЛИТИКА ====================== -->
+<div class="tab-panel active" data-panel="analytics">
+
 <!-- ====================== EXECUTIVE SUMMARY (PERSON-FIRST) ====================== -->
 <section class="summary-section">
   <h2>Главное</h2>
@@ -766,6 +819,28 @@ details summary:hover{ background: #F3F4F6; }
 
 {{DOSSIERS}}
 
+<!-- ====================== STEP 3 — LINKEDIN DEEP DIVE (paid, optional) ====================== -->
+{{STEP3_SECTION}}
+<!--
+   STATE A — STUB (после Stage 5):
+   <section class="step2-stub">
+     <h2>🔗 Шаг 3: LinkedIn deep dive — не запущен</h2>
+     <p>Требует <code>$APIFY_API_KEY</code> в .env. Скажи в чате <code>«запусти Шаг 3»</code>.</p>
+   </section>
+
+   STATE B — FULL (после Stage 9): полный LinkedIn профиль ЛПР через Apify
+   harvestapi/linkedin-profile-scraper — headline, about, образование, awards, skills,
+   recent posts, network signals.
+-->
+
+<!-- ====================== STEP 4 — SOCIAL SIGNALS (paid, optional) ====================== -->
+{{STEP4_SECTION}}
+<!--
+   STATE A — STUB по умолчанию.
+   STATE B — FULL: IG/FB/TikTok через tri_angle/social-media-sentiment-analysis-tool
+   (требует approval в Apify Console).
+-->
+
 <!-- ====================== SOURCES ====================== -->
 <section>
   <h2>Источники</h2>
@@ -828,6 +903,54 @@ details summary:hover{ background: #F3F4F6; }
    </section>
 -->
 
+</div><!-- /tab-panel analytics -->
+
+<!-- ====================== TAB: КОММУНИКАЦИЯ ====================== -->
+<div class="tab-panel" data-panel="communication">
+
+<div class="comm-intro">
+  <h2>Эволюция захода и сообщений</h2>
+  <p>Каждый шаг разведки добавляет персонализационных точек → hook и сообщение эволюционируют. Latest версия сверху, предыдущие приглушённые ниже. <strong>Показывает, как улучшается коммуникация с каждым слоем data.</strong></p>
+</div>
+
+{{COMM_CARDS}}
+<!--
+   COMM_CARDS — повторяющиеся блоки per primary ЛПР:
+
+   <div class="comm-card" id="comm-{slug}">
+     <div class="comm-card-header">
+       <h3>1. Имя Фамилия</h3>
+       <div class="person-role">Должность · контакт</div>
+     </div>
+
+     <!-- ─── Hook evolution ─── -->
+     <div class="evolution-section">
+       <div class="evolution-label">Заход — эволюция через шаги</div>
+       <div class="hook-versions">
+         <div class="hook-version current"> ... v_latest hook ... </div>
+         <div class="hook-version previous"> ... v_prev hook ... </div>
+         ...
+         <div class="hook-version stub"> ... pending stub ... </div>
+       </div>
+     </div>
+
+     <!-- ─── Message evolution ─── -->
+     <div class="evolution-section">
+       <div class="evolution-label">Сообщение — эволюция через шаги</div>
+       <div class="message-versions">
+         <div class="message-version current">
+           <button class="copy-btn">Скопировать</button>
+           <pre>... v_latest message ...</pre>
+           <div class="what-changed">...</div>
+         </div>
+         <div class="message-version previous"> ... </div>
+         ...
+       </div>
+     </div>
+   </div>
+-->
+
+</div><!-- /tab-panel communication -->
 
 <footer>
   Использовано: <span class="tag">{{STACK}}</span><span class="sep">·</span>Время прогона: {{RUNTIME}}<br>
@@ -835,6 +958,15 @@ details summary:hover{ background: #F3F4F6; }
 </footer>
 
 <script>
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+  });
+});
+
 // Copy buttons inside message-box / cta-prompt-box (next to a <pre>)
 document.querySelectorAll('.copy-btn').forEach(btn => {
   btn.addEventListener('click', () => {

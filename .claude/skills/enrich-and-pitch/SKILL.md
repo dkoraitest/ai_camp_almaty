@@ -12,7 +12,21 @@ description: |
 
 # Enrich-and-Pitch — B2B Outbound Research & Generation (Казахстан)
 
-End-to-end пайплайн для персонализированного outbound: от названия компании до 1-3 готовых opening сообщений под конкретных ЛПР с публично подтверждаемым контекстом.
+End-to-end пайплайн для персонализированного outbound: от названия компании до готовых opening сообщений под конкретных ЛПР с публично подтверждаемым контекстом.
+
+**Архитектура отчёта — две вкладки в одном HTML:**
+- **Аналитика** — всё что мы знаем (профиль, hiring, market, LinkedIn, social — что собрано на текущем шаге)
+- **Коммуникация** — как мы пишем (эволюция hook + message через шаги, latest сверху, previous приглушённые)
+
+**4-шаговая ladder эволюции hook/message:**
+| Шаг | Что добавляем | Free/Paid | Hook становится |
+|---|---|---|---|
+| **1** | Company + ЛПР + Hiring (free) | Free | v1 |
+| **2** | Market context (free, через Claude) | Free | v2 |
+| **3** | LinkedIn deep dive (Apify) | Paid | v3 |
+| **4** | Social signals FB/IG/TikTok (Apify) | Paid | v4 |
+
+Каждый шаг → regenerate hook + message → новая версия в Communication tab. Latest становится current, предыдущие — previous (dimmed).
 
 ## Когда использовать
 
