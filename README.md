@@ -32,8 +32,8 @@
 ### Запуск
 
 ```bash
-git clone https://github.com/dkoraitest/ai-sales-toolkit.git
-cd ai-sales-toolkit
+git clone https://github.com/dkoraitest/ai_camp_almaty.git
+cd ai_camp_almaty
 code .
 ```
 
