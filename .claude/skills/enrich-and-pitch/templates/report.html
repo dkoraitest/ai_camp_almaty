@@ -264,7 +264,7 @@ footer{
   font-size: 14px;
 }
 
-/* Executive Summary — hook cards */
+/* Executive Summary — person-first action cards */
 .summary-section{
   background: linear-gradient(180deg, #F0FDF4 0%, white 60%);
   border-color: var(--accent);
@@ -278,58 +278,173 @@ footer{
 .summary-subtitle{
   font-size: 13px;
   color: var(--ink-muted);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
-.hook-card{
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 18px 22px;
-  margin-bottom: 12px;
+
+.person-card{
   background: white;
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 26px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
 }
-.hook-card:last-child{ margin-bottom: 0; }
-.hook-card .num{
-  font-size: 26px;
+.person-card:last-child{ margin-bottom: 0; }
+.person-header{
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.person-num{
+  font-size: 32px;
   font-weight: 700;
   color: var(--accent);
-  min-width: 28px;
   line-height: 1;
+  min-width: 30px;
 }
-.hook-card .content{ flex: 1; }
-.hook-meta{
-  display: flex;
-  gap: 10px;
-  margin-bottom: 8px;
-  align-items: center;
-}
+.person-id{ flex: 1; }
+.person-id h3{ font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
+.person-role{ color: var(--ink-muted); font-size: 14px; }
 .tier-badge{
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 4px 10px;
+  border-radius: 5px;
   text-transform: uppercase;
   white-space: nowrap;
 }
-.tier-badge.t1{ background: var(--accent); color: white; }
-.tier-badge.t2{ background: var(--accent-light); color: var(--accent-dark); }
-.tier-badge.t3{ background: #F3F4F6; color: var(--ink-muted); }
-.hook-title{
+.tier-badge.primary{ background: var(--accent); color: white; }
+.tier-badge.secondary{ background: var(--accent-light); color: var(--accent-dark); }
+
+.person-block{
+  margin-bottom: 18px;
+}
+.person-block:last-of-type{ margin-bottom: 0; }
+.block-label{
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
   font-weight: 700;
-  font-size: 16px;
-  color: var(--ink);
-  line-height: 1.3;
+  margin-bottom: 8px;
 }
-.hook-body{
-  font-size: 14px;
+.block-body{ font-size: 15px; color: var(--ink); line-height: 1.55; }
+.block-body strong{ color: var(--ink); }
+.person-list{ list-style: none; padding: 0; }
+.person-list li{
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.person-list li:before{
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.person-block.intersection{
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 18px;
+}
+.person-block.intersection .block-label{ color: var(--accent-dark); }
+.person-block.intersection .block-body{ color: #064E3B; }
+
+.person-actions{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.action-link{
+  font-size: 13px;
   color: var(--ink-muted);
-  line-height: 1.55;
-  margin-top: 6px;
+  text-decoration: none;
+  font-weight: 500;
 }
-.hook-body strong{ color: var(--ink); }
+.action-link:hover{ color: var(--accent); }
+.action-btn{
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.action-btn:hover{ background: var(--accent-dark); }
+.action-btn.copied{ background: #047857; }
+
+/* Step 2 CTA — Deep Research next step */
+.step2-cta{
+  background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+  border: 1px solid #C7D2FE;
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin-bottom: 22px;
+}
+.step2-cta h2{
+  color: #3730A3;
+  margin-bottom: 8px;
+}
+.step2-cta p{
+  color: #4338CA;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.step2-cta .cta-note{
+  font-size: 12px;
+  color: #6366F1;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+.cta-prompt-box{
+  background: #312E81;
+  color: #E0E7FF;
+  border-radius: 10px;
+  padding: 20px 24px;
+  position: relative;
+  margin: 14px 0;
+}
+.cta-prompt-box pre{
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.65;
+  padding-right: 110px;
+}
+.cta-prompt-box .copy-btn{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+}
+.cta-prompt-box .copy-btn:hover{ background: rgba(255,255,255,0.2); }
+.cta-prompt-box .copy-btn.copied{ background: #10B981; border-color: #10B981; }
 
 /* Hiring Intelligence — compact */
 .hiring-stats{
@@ -460,12 +575,12 @@ details summary:hover{ background: #F3F4F6; }
   </div>
 </header>
 
-<!-- ====================== EXECUTIVE SUMMARY ====================== -->
+<!-- ====================== EXECUTIVE SUMMARY (PERSON-FIRST) ====================== -->
 <section class="summary-section">
   <h2>Главное</h2>
-  <div class="summary-subtitle">Топ хуки для outbound, отсортированы по силе сигнала</div>
+  <div class="summary-subtitle">Что нужно сказать сейлу за 10 секунд по каждому ЛПР</div>
 
-{{HOOK_CARDS}}
+{{PERSON_CARDS}}
 </section>
 
 <!-- ====================== ПРОФИЛЬ КОМПАНИИ ====================== -->
@@ -531,15 +646,53 @@ details summary:hover{ background: #F3F4F6; }
   </ul>
 </section>
 
+<!-- ====================== STEP 2 CTA — DEEP RESEARCH ====================== -->
+<section class="step2-cta">
+  <h2>📍 Шаг 2: Market context через Deep Research</h2>
+  <p>
+    Этот отчёт даёт контекст по компании и ЛПР (фактический research). Чтобы добавить
+    понимание <strong>сектора, конкурентов и динамики рынка</strong> — запусти отдельный
+    <strong>Deep Research</strong> в claude.ai или ChatGPT.
+  </p>
+
+  <div class="cta-prompt-box">
+    <button class="copy-btn">Скопировать промпт</button>
+    <pre>{{DEEP_RESEARCH_PROMPT}}</pre>
+  </div>
+
+  <p class="cta-note">
+    ⏱ Deep Research занимает 5-10 минут. Результат сохрани рядом — например, в reports/deep-research-<company-slug>.md.
+  </p>
+</section>
+
 <footer>
   Использовано: <span class="tag">{{STACK}}</span><span class="sep">·</span>Время прогона: {{RUNTIME}}<br>
   AI Sales Toolkit · AI Surfers · AI Camp Almaty 2026
 </footer>
 
 <script>
+// Copy buttons inside message-box / cta-prompt-box (next to a <pre>)
 document.querySelectorAll('.copy-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const text = btn.parentElement.querySelector('pre').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = '✓ Скопировано';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  });
+});
+
+// "Copy message" buttons in person-cards (top) — point via data-target to message-box below
+document.querySelectorAll('.copy-target').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.querySelector(btn.dataset.target);
+    if (!target) return;
+    const text = target.querySelector('pre').textContent;
     navigator.clipboard.writeText(text).then(() => {
       const original = btn.textContent;
       btn.textContent = '✓ Скопировано';
@@ -565,32 +718,69 @@ TEMPLATE PLACEHOLDERS — substitute when generating report:
 {{STACK}}           — полная фраза "free стек" / "free + apify + goszakup"
 {{RUNTIME}}         — "~90 сек" / "~2 мин"
 
-{{HOOK_CARDS}}          — 1-3 повторяющихся блока. Топ-3 точки захода, отсортированы по силе.
+{{PERSON_CARDS}}        — 1-3 повторяющихся person-action блока (по primary ЛПР).
+                          Структура каждого блока — для сейла за 10 секунд:
 
-<div class="hook-card">
-  <div class="num">1</div>
-  <div class="content">
-    <div class="hook-meta">
-      <span class="tier-badge t1">T1</span>
-      <div class="hook-title">Контур + partnership lead hiring</div>
+<div class="person-card">
+  <div class="person-header">
+    <div class="person-num">1</div>
+    <div class="person-id">
+      <h3>Имя Фамилия</h3>
+      <div class="person-role">Должность · контакт (LinkedIn / Telegram / Instagram если есть)</div>
     </div>
-    <div class="hook-body">
-      Февральская интеграция с Контур + только что открыли позицию руководителя
-      международных партнёрских продаж. <strong>Формирование коммерческой
-      функции с нуля</strong> — окно для встраивания AI-стека ДО legacy.
+    <span class="tier-badge primary">Primary</span>
+  </div>
+
+  <div class="person-block">
+    <div class="block-label">В приоритете сейчас</div>
+    <ul class="person-list">
+      <li>Приоритет 1 (конкретный, recent, с источником)</li>
+      <li>Приоритет 2</li>
+      <li>Приоритет 3</li>
+    </ul>
+  </div>
+
+  <div class="person-block">
+    <div class="block-label">С чего зайти</div>
+    <div class="block-body">
+      Одно событие/факт + опорная фраза. Откуда взято и почему именно это.
     </div>
+  </div>
+
+  <div class="person-block intersection">
+    <div class="block-label">Стык с нашим оффером</div>
+    <div class="block-body">
+      Где наш оффер пересекается с их фокусом. Сжато, 1-2 предложения.
+    </div>
+  </div>
+
+  <div class="person-actions">
+    <a class="action-link" href="#dossier-{{slug}}">Полное досье ↓</a>
+    <button class="action-btn copy-target" data-target="#message-{{slug}}">Скопировать сообщение</button>
   </div>
 </div>
 
-Tier-badge классы: t1 (winning hook — заполненный зелёный),
-                   t2 (strong support — outlined зелёный),
-                   t3 (context — серый).
+Tier-badge классы: primary (главный buyer — заполненный зелёный)
+                   secondary (gatekeeper / co-decision — outlined зелёный)
 
-Принципы хуков:
-- 1-3 хука максимум (если меньше — ок, не наполняй)
-- Каждый = пересечение НЕДАВНЕГО события компании × нашего оффера
-- Hook-title — заголовок 5-8 слов
-- Hook-body — 2-3 короткие предложения, конкретные факты с датами/именами
+Принципы person-cards:
+- 1-3 cards максимум, только PRIMARY ЛПР
+- Secondary ЛПР → только в «Идентифицированные ЛПР» list section (без действий)
+- «В приоритете сейчас» = 2-4 буллета конкретных recent фактов с датами/именами
+- «С чего зайти» = ОДНО событие + опорная фраза, не список
+- «Стык с нашим оффером» = ВСЕГДА — без этого карточка бесполезна для сейла
+- href="#dossier-X" должен совпадать с id у dossier секции ниже
+
+{{DEEP_RESEARCH_PROMPT}} — готовый промпт для Шага 2 (market research).
+                          Подставь название компании и сектор в шаблон. Пример:
+"Проведи market research для outbound-кампании в B2B-сектор
+[SECTOR — например: ЭДО / electronic document management]
+в Казахстане и регионе.
+Покрой: топ-5 конкурентов [COMPANY] (KZ + регион + глобал),
+динамику рынка 2024-2026, AI-тренды в категории,
+макро-сигналы 2026, уязвимости лидера сегмента.
+Источники свежие (последние 12 мес). Финал — один абзац:
+«как использовать этот контекст в outbound коммуникации»."
 
 {{COMPANY_FACTS_CORE}}  — КОМПАКТНЫЙ блок: что важно для outreach.
                           Например: Сектор, Продукт, Размер, География,
