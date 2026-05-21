@@ -308,10 +308,12 @@ footer{
 .what-changed{ background: #FEF3C7; border-left: 2px solid #D97706; padding: 8px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #78350F; margin-top: 8px; line-height: 1.5; }
 .what-changed strong{ color: #92400E; }
 
-/* Added-content highlights — visual diff between versions */
-.added-v2{ background: rgba(99, 102, 241, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(99, 102, 241, 0.5); }
-.added-v3{ background: rgba(5, 150, 105, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
-.added-v4{ background: rgba(217, 119, 6, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
+/* Added-content highlights — visual diff between message versions.
+   SCOPED to .message-version only — these classes have no effect on the
+   Analytics tab. There the spans render as plain text. */
+.message-version .added-v2{ background: rgba(99, 102, 241, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(99, 102, 241, 0.5); }
+.message-version .added-v3{ background: rgba(5, 150, 105, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
+.message-version .added-v4{ background: rgba(217, 119, 6, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
 .message-version.current .added-v2{ background: rgba(129, 140, 248, 0.30); border-color: rgba(129, 140, 248, 0.7); }
 .message-version.current .added-v3{ background: rgba(16, 185, 129, 0.35); border-color: rgba(16, 185, 129, 0.8); }
 .message-version.current .added-v4{ background: rgba(245, 158, 11, 0.35); border-color: rgba(245, 158, 11, 0.8); }
