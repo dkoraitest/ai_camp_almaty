@@ -37,6 +37,8 @@ __pycache__/
 *.backup-pre-migration
 *.backup
 
+# Working folder for one-off scripts (not for git)
+active/
 # Workshop screenshots / source images kept locally (not for git)
 outbound.png
 *.local.png
