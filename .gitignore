@@ -32,3 +32,11 @@ __pycache__/
 # Local Claude Code working state
 .claude/local/
 .claude/cache/
+
+# Backup files from template migrations (not for git)
+*.backup-pre-migration
+*.backup
+
+# Workshop screenshots / source images kept locally (not for git)
+outbound.png
+*.local.png

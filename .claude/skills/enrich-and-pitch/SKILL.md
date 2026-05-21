@@ -162,7 +162,7 @@ End-to-end пайплайн для персонализированного outb
    - Если редирект — следуй на almaty.hh.kz или astana.hh.kz
    - Извлеки список ВСЕХ открытых вакансий: title, локация, диапазон зарплаты, требуемый опыт
 
-6. **Hiring intelligence — КОМПАКТНО. 3 блока, никакой воды:**
+6. **Активность по найму — КОМПАКТНО. 3 блока, никакой воды:**
 
    **A. Stats — 1 строка:**
    `N вакансий · Астана X / Алматы Y · ЗП мин–макс ₸ · ссылка на источник`
@@ -468,20 +468,20 @@ formation moment коммерческой функции после Контур
 3. **Сгенерируй заполненный HTML**:
    - **Header / meta**: `{{COMPANY_NAME}}`, `{{BIN}}`, `{{TIMESTAMP}}` (формат «20 мая 2026, 14:30»), `{{STACK_TAG}}`, `{{STACK}}`, `{{RUNTIME}}`
    - **`{{PERSON_CARDS}}`** ⭐ — секция «Главное»: 1-3 person-action карточки из Stage 4a (только PRIMARY ЛПР). Action-link `href="#lpr-<slug>"` ведёт к раскрывающейся карточке ЛПР ниже; кнопка `data-target="#comm-<slug>"` переключает на вкладку Коммуникация и скроллит к нужному сообщению.
-   - **`{{COMPANY_FACTS_CORE}}` + `{{COMPANY_FACTS_LEGAL}}`** — компания: core видимые факты + legal в collapsed `<details>`
-   - **Hiring intelligence**: `{{HIRING_STATS}}` (1 строка), `{{HIRING_WHO}}` (3-5 буллетов), `{{HIRING_GAPS}}` (2-3 буллета), `{{HIRING_MEANING}}` (1-2 фразы вывода)
+   - **`{{COMPANY_FACTS_COMPACT}}` + `{{COMPANY_FACTS_LEGAL}}`** — компания: компактные видимые факты + legal в collapsed `<details>`
+   - **Активность по найму**: `{{HIRING_STATS}}` (1 строка), `{{HIRING_WHO}}` (3-5 буллетов), `{{HIRING_GAPS}}` (2-3 буллета), `{{HIRING_MEANING}}` (1-2 фразы вывода)
    - **`{{LPR_CARDS}}`** ⭐ — раскрывающиеся `<details class="lpr-card" id="lpr-<slug>">` per ЛПР. Summary — компактная карточка (имя, должность, why). Внутри раскрытия — контекст (background, recent activity, themes, угол захода). **Черновика письма внутри НЕТ** — он живёт только на вкладке Коммуникация.
    - **`{{STEP2_SECTION}}`** — Market context, идёт сразу после ЛПР. STUB по умолчанию (Stage 5), FULL после Stage 6.
    - **`{{STEP3_SECTION}}`** / **`{{STEP4_SECTION}}`** — LinkedIn / Social. STUB по умолчанию (paid).
    - **`{{SOURCES}}`** — все использованные URL из всех стейджей. Всегда в самом конце вкладки Аналитика.
    - **`{{COMM_CARDS}}`** ⭐ — per primary ЛПР, на вкладке Коммуникация. Внутри **только** `.message-versions` с 4 полными версиями письма (v1 база, v2 +рынок, v3 +LinkedIn, v4 +соцсети). Каждая версия = ПОЛНОЕ письмо. В v2/v3/v4 фрагменты, которые добавились относительно предыдущей версии, обёрнуты в `<span class="added-v2">…</span>` / `added-v3` / `added-v4` — это даёт визуальный diff. **Никаких отдельных hook-блоков**.
 
-   **`DOSSIERS` placeholder больше не существует** — контекст ЛПР переехал внутрь `{{LPR_CARDS}}` как раскрытие.
+   **Контекст ЛПР живёт ВНУТРИ `{{LPR_CARDS}}`** — каждый `<details class="lpr-card" id="lpr-<slug>">` содержит `<summary>` (компактная карточка) + `<div class="lpr-context">` (background, recent activity, themes, угол захода). Отдельного `DOSSIERS` плейсхолдера нет.
 
    **Порядок секций на вкладке Аналитика (фиксированный):**
    1. Главное (PERSON_CARDS)
    2. Профиль компании
-   3. Hiring intelligence
+   3. Активность по найму (HIRING_*)
    4. Идентифицированные ЛПР (LPR_CARDS — с вложенным контекстом)
    5. Шаг 2: Market context (STEP2_SECTION)
    6. Шаг 3: LinkedIn deep dive (STEP3_SECTION)
@@ -815,8 +815,8 @@ formation moment коммерческой функции после Контур
 
 📄 reports/<slug>-<timestamp>.html
 
-Найдено ЛПР: <N> (из них primary: <N>)
-Сгенерировано сообщений: <N>
+Найдено ЛПР: <N> (из них главных: <N>)
+Сгенерировано писем: <N> (по одному полному письму на каждого главного ЛПР)
 Использовано: <stack>
 Время: ~<X> сек
 

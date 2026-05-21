@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Контекст-360: {{COMPANY_NAME}}</title>
 <style>
 :root{
@@ -35,52 +35,24 @@ header{
   padding-bottom: 28px;
   margin-bottom: 44px;
 }
-.brand{
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-}
+.brand{ font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 header h1{ font-size: 36px; font-weight: 700; margin-top: 8px; letter-spacing: -0.02em; line-height: 1.2; }
 .meta{ color: var(--ink-muted); font-size: 13px; margin-top: 10px; }
 .meta .sep{ margin: 0 8px; color: var(--ink-soft); }
 
-section{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 30px;
-  margin-bottom: 22px;
-  box-shadow: var(--shadow);
-}
+section{ background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 30px; margin-bottom: 22px; box-shadow: var(--shadow); }
 h2{ font-size: 22px; font-weight: 700; margin-bottom: 18px; color: var(--ink); letter-spacing: -0.01em; }
 h3{ font-size: 18px; font-weight: 600; margin-bottom: 8px; }
 
-.fact-grid{
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 14px 28px;
-}
-.fact-grid dt{
-  color: var(--ink-muted);
-  font-size: 13px;
-  font-weight: 500;
-  padding-top: 1px;
-}
-.fact-grid dd{
-  font-weight: 500;
-  color: var(--ink);
-}
+.fact-grid{ display: grid; grid-template-columns: 200px 1fr; gap: 14px 28px; }
+.fact-grid dt{ color: var(--ink-muted); font-size: 13px; font-weight: 500; padding-top: 1px; }
+.fact-grid dd{ font-weight: 500; color: var(--ink); }
 .fact-grid dd a{ color: var(--accent); text-decoration: none; }
 .fact-grid dd a:hover{ text-decoration: underline; }
-.unconfirmed{
-  color: var(--ink-soft);
-  font-style: italic;
-  font-size: 13px;
-}
+.unconfirmed{ color: var(--ink-soft); font-style: italic; font-size: 13px; }
+.no-data{ color: var(--ink-soft); font-style: italic; font-size: 14px; }
 
-/* LPR card — expandable with nested context (background, recent activity, themes, angle) */
+/* LPR card — expandable <details> with nested context */
 .lpr-card{
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -88,181 +60,61 @@ h3{ font-size: 18px; font-weight: 600; margin-bottom: 8px; }
   background: white;
   overflow: hidden;
 }
-.lpr-card[open]{
-  border-color: var(--accent);
-  box-shadow: 0 1px 4px rgba(5,150,105,0.08);
-}
+.lpr-card[open]{ border-color: var(--accent); box-shadow: 0 1px 4px rgba(5,150,105,0.08); }
 .lpr-card > summary{
-  padding: 18px 22px;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  user-select: none;
+  padding: 18px 22px; cursor: pointer; list-style: none;
+  display: flex; align-items: baseline; gap: 16px; user-select: none;
 }
 .lpr-card > summary::-webkit-details-marker{ display: none; }
 .lpr-card > summary:hover{ background: #FAFAFA; }
 .lpr-card > summary:after{
-  content: '▾ контекст';
-  margin-left: auto;
-  align-self: center;
-  color: var(--ink-soft);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  transition: transform 0.2s;
+  content: '▾ контекст'; margin-left: auto; align-self: center;
+  color: var(--ink-soft); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.03em; white-space: nowrap;
 }
-.lpr-card[open] > summary:after{
-  content: '▴ свернуть';
-  color: var(--accent);
-}
+.lpr-card[open] > summary:after{ content: '▴ свернуть'; color: var(--accent); }
 .lpr-card .num{
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent);
-  min-width: 32px;
-  line-height: 1;
+  font-size: 28px; font-weight: 700; color: var(--accent);
+  min-width: 32px; line-height: 1;
 }
 .lpr-card .body strong{ font-size: 16px; }
 .lpr-card .role{ color: var(--ink-muted); font-size: 14px; margin: 2px 0 6px; }
 .lpr-card .why{ font-size: 14px; color: var(--ink-muted); }
-
-/* Nested context inside expanded LPR card */
 .lpr-context{
-  padding: 0 22px 22px;
-  border-top: 1px solid var(--border);
+  padding: 0 22px 22px; border-top: 1px solid var(--border);
   background: #FCFCFB;
-  margin-top: 0;
 }
-.lpr-context .section-row{
-  margin-top: 18px;
-}
-.lpr-context .section-row:first-child{
-  padding-top: 18px;
-}
-.lpr-context .angle-box{
-  margin: 18px 0 0;
-}
+.lpr-context .section-row{ margin-top: 18px; }
+.lpr-context .section-row:first-child{ padding-top: 18px; }
+.lpr-context .angle-box{ margin: 18px 0 0; }
 
-/* .dossier* and .message-box* removed — context now lives inside expandable LPR card,
-   draft message lives only on Communication tab as message-versions. */
-
-.section-row{
-  margin-bottom: 22px;
-}
+.section-row{ margin-bottom: 22px; }
 .section-row:last-child{ margin-bottom: 0; }
-.section-label{
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.section-row > div:not(.section-label){
-  color: var(--ink);
-  font-size: 15px;
-}
-.section-row ul{
-  list-style: none;
-  padding-left: 0;
-}
-.section-row ul li{
-  padding-left: 18px;
-  position: relative;
-  margin-bottom: 6px;
-}
-.section-row ul li:before{
-  content: '·';
-  position: absolute;
-  left: 4px;
-  color: var(--accent);
-  font-weight: 700;
-}
+.section-label{ font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+.section-row > div:not(.section-label){ color: var(--ink); font-size: 15px; }
+.section-row ul{ list-style: none; padding-left: 0; }
+.section-row ul li{ padding-left: 18px; position: relative; margin-bottom: 6px; }
+.section-row ul li:before{ content: '·'; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
 
-.angle-box{
-  background: var(--accent-light);
-  border-left: 3px solid var(--accent);
-  padding: 18px 22px;
-  margin: 24px 0 18px;
-  border-radius: 0 10px 10px 0;
-}
-.angle-label{
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--accent-dark);
-  font-weight: 700;
-  margin-bottom: 6px;
-}
+.angle-box{ background: var(--accent-light); border-left: 3px solid var(--accent); padding: 18px 22px; margin: 24px 0 18px; border-radius: 0 10px 10px 0; }
+.angle-label{ font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent-dark); font-weight: 700; margin-bottom: 6px; }
 .angle-body{ color: var(--accent-dark); font-weight: 500; }
 
-/* Shared copy button (used by message-version on Communication tab) */
-.copy-btn{
-  background: rgba(255,255,255,0.08);
-  color: #F5F7FA;
-  border: 1px solid rgba(255,255,255,0.15);
-  padding: 7px 14px;
-  border-radius: 7px;
-  font-size: 12px;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 500;
-  transition: all 0.15s ease;
-}
+/* Copy buttons */
+.copy-btn{ position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.08); color: #F5F7FA; border: 1px solid rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: inherit; font-weight: 500; transition: all 0.15s ease; }
 .copy-btn:hover{ background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.3); }
 .copy-btn.copied{ background: var(--accent); border-color: var(--accent); color: white; }
 
-.sources-list{
-  list-style: none;
-  padding: 0;
-}
-.sources-list li{
-  margin-bottom: 8px;
-  padding-left: 20px;
-  position: relative;
-  font-size: 14px;
-}
-.sources-list li:before{
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: 700;
-}
-.sources-list a{
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-all;
-}
+.sources-list{ list-style: none; padding: 0; }
+.sources-list li{ margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 14px; }
+.sources-list li:before{ content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.sources-list a{ color: var(--accent); text-decoration: none; word-break: break-all; }
 .sources-list a:hover{ text-decoration: underline; }
-.sources-list .label{
-  color: var(--ink-muted);
-  font-size: 13px;
-  margin-right: 6px;
-}
+.sources-list .label{ color: var(--ink-muted); font-size: 13px; margin-right: 6px; }
 
-footer{
-  margin-top: 44px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 12px;
-  color: var(--ink-muted);
-  line-height: 1.8;
-}
-.tag{
-  display: inline-block;
-  background: var(--accent-light);
-  color: var(--accent-dark);
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
+footer{ margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--ink-muted); line-height: 1.8; }
+.tag{ display: inline-block; background: var(--accent-light); color: var(--accent-dark); padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+.tag-muted{ background: #F3F4F6; color: var(--ink-muted); }
 
 /* Tabs */
 .tabs{ display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 28px; position: sticky; top: 0; background: var(--bg); padding-top: 4px; z-index: 10; }
@@ -308,12 +160,10 @@ footer{
 .what-changed{ background: #FEF3C7; border-left: 2px solid #D97706; padding: 8px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #78350F; margin-top: 8px; line-height: 1.5; }
 .what-changed strong{ color: #92400E; }
 
-/* Added-content highlights — visual diff between message versions.
-   SCOPED to .message-version only — these classes have no effect on the
-   Analytics tab. There the spans render as plain text. */
-.message-version .added-v2{ background: rgba(99, 102, 241, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(99, 102, 241, 0.5); }
-.message-version .added-v3{ background: rgba(5, 150, 105, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
-.message-version .added-v4{ background: rgba(217, 119, 6, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
+/* Added-content highlights — visual diff between message versions (ONLY inside .message-version blocks on Communication tab) */
+.added-v2{ background: rgba(99, 102, 241, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(99, 102, 241, 0.5); }
+.added-v3{ background: rgba(5, 150, 105, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
+.added-v4{ background: rgba(217, 119, 6, 0.18); padding: 1px 4px; border-radius: 3px; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
 .message-version.current .added-v2{ background: rgba(129, 140, 248, 0.30); border-color: rgba(129, 140, 248, 0.7); }
 .message-version.current .added-v3{ background: rgba(16, 185, 129, 0.35); border-color: rgba(16, 185, 129, 0.8); }
 .message-version.current .added-v4{ background: rgba(245, 158, 11, 0.35); border-color: rgba(245, 158, 11, 0.8); }
@@ -333,373 +183,114 @@ footer{
 .legend-row .swatch.v3{ background: rgba(5, 150, 105, 0.18); color: #047857; border-bottom: 2px solid rgba(5, 150, 105, 0.6); }
 .legend-row .swatch.v4{ background: rgba(217, 119, 6, 0.18); color: #92400E; border-bottom: 2px solid rgba(217, 119, 6, 0.6); }
 @media (max-width: 640px){ .framework-row{ grid-template-columns: 1fr; gap: 22px; } }
-.tag-muted{
-  background: #F3F4F6;
-  color: var(--ink-muted);
-}
-.no-data{
-  color: var(--ink-soft);
-  font-style: italic;
-  font-size: 14px;
-}
+
+/* Step 2 — Market context (stub / full) */
+.step2-stub{ background: #F9FAFB; border: 2px dashed #D1D5DB; border-radius: 14px; padding: 22px 28px; margin-bottom: 22px; text-align: center; }
+.step2-stub h2{ color: var(--ink-muted); font-size: 16px; margin-bottom: 6px; display: inline-flex; align-items: center; gap: 8px; }
+.step2-stub p{ color: var(--ink-muted); font-size: 13px; margin: 0; }
+.step2-stub code{ background: white; border: 1px solid var(--border); padding: 2px 7px; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink); }
+
+.step2-full{ background: linear-gradient(180deg, #EEF2FF 0%, white 60%); border: 1px solid #C7D2FE; border-radius: 14px; padding: 30px; margin-bottom: 22px; }
+.step2-full > h2{ color: #3730A3; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.step2-full .summary-subtitle{ color: #4F46E5; }
+.market-grid{ display: grid; grid-template-columns: 160px 1fr; gap: 14px 24px; margin-bottom: 20px; }
+.market-grid dt{ color: #6366F1; font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; padding-top: 2px; }
+.market-grid dd{ color: var(--ink); font-size: 14px; line-height: 1.55; }
+.market-grid dd ul{ list-style: none; padding: 0; }
+.market-grid dd ul li{ padding-left: 16px; position: relative; margin-bottom: 4px; }
+.market-grid dd ul li:before{ content: '·'; position: absolute; left: 4px; color: #6366F1; font-weight: 700; }
+.market-grid dd ul li.up:before{ content: '⬆'; color: #059669; }
+.market-grid dd ul li.down:before{ content: '⬇'; color: #DC2626; }
+.market-insight{ background: white; border-left: 3px solid #4F46E5; padding: 16px 20px; border-radius: 0 10px 10px 0; margin-top: 16px; }
+.market-insight-label{ font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: #4F46E5; font-weight: 700; margin-bottom: 6px; }
+.market-insight-body{ color: var(--ink); font-size: 14px; line-height: 1.6; }
+.market-sources{ margin-top: 14px; font-size: 12px; color: #6366F1; }
+.market-sources a{ color: #4F46E5; text-decoration: none; }
+
+/* Step 3 — LinkedIn deep dive (green variant of step2-full) */
+.step3-full{ background: linear-gradient(180deg, #F0FDF4 0%, white 60%); border: 1px solid #A7F3D0; border-radius: 14px; padding: 30px; margin-bottom: 22px; }
+.step3-full > h2{ color: #047857; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.step3-full .summary-subtitle{ color: #059669; }
+.step3-full .market-grid dt{ color: #047857; }
+.step3-full .market-grid dd ul li:before{ color: #059669; }
+.step3-full .market-insight{ border-left-color: var(--accent); }
+.step3-full .market-insight-label{ color: var(--accent-dark); }
+.step3-full .market-sources{ color: #047857; }
+.step3-full .market-sources a{ color: var(--accent-dark); }
 
 /* Executive Summary — person-first action cards */
-.summary-section{
-  background: linear-gradient(180deg, #F0FDF4 0%, white 60%);
-  border-color: var(--accent);
-}
-.summary-section h2{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 4px;
-}
-.summary-subtitle{
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-bottom: 20px;
-}
+.summary-section{ background: linear-gradient(180deg, #F0FDF4 0%, white 60%); border-color: var(--accent); }
+.summary-section h2{ display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.summary-subtitle{ font-size: 13px; color: var(--ink-muted); margin-bottom: 20px; }
 
-.person-card{
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px 26px;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow);
-}
+.person-card{ background: white; border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px; margin-bottom: 14px; box-shadow: var(--shadow); }
 .person-card:last-child{ margin-bottom: 0; }
-.person-header{
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--border);
-}
-.person-num{
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  min-width: 30px;
-}
+.person-header{ display: flex; align-items: flex-start; gap: 16px; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+.person-num{ font-size: 32px; font-weight: 700; color: var(--accent); line-height: 1; min-width: 30px; }
 .person-id{ flex: 1; }
 .person-id h3{ font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
 .person-role{ color: var(--ink-muted); font-size: 14px; }
-.tier-badge{
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 4px 10px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
+.tier-badge{ font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; white-space: nowrap; }
 .tier-badge.primary{ background: var(--accent); color: white; }
 .tier-badge.secondary{ background: var(--accent-light); color: var(--accent-dark); }
 
-/* .hook-version* removed — no longer used. Letter evolution lives entirely
-   inside .message-version blocks on the Communication tab. */
-
-.person-block{
-  margin-bottom: 18px;
-}
+.person-block{ margin-bottom: 18px; }
 .person-block:last-of-type{ margin-bottom: 0; }
-.block-label{
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+.block-label{ font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
 .block-body{ font-size: 15px; color: var(--ink); line-height: 1.55; }
 .block-body strong{ color: var(--ink); }
 .person-list{ list-style: none; padding: 0; }
-.person-list li{
-  padding-left: 16px;
-  position: relative;
-  margin-bottom: 6px;
-  font-size: 15px;
-  line-height: 1.5;
-}
-.person-list li:before{
-  content: '·';
-  position: absolute;
-  left: 4px;
-  color: var(--accent);
-  font-weight: 700;
-}
+.person-list li{ padding-left: 16px; position: relative; margin-bottom: 6px; font-size: 15px; line-height: 1.5; }
+.person-list li:before{ content: '·'; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
 
-.person-block.intersection{
-  background: var(--accent-light);
-  border-left: 3px solid var(--accent);
-  padding: 14px 18px;
-  border-radius: 0 8px 8px 0;
-  margin-bottom: 18px;
-}
+.person-block.intersection{ background: var(--accent-light); border-left: 3px solid var(--accent); padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 18px; }
 .person-block.intersection .block-label{ color: var(--accent-dark); }
 .person-block.intersection .block-body{ color: #064E3B; }
 
-.person-actions{
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  margin-top: 4px;
-}
-.action-link{
-  font-size: 13px;
-  color: var(--ink-muted);
-  text-decoration: none;
-  font-weight: 500;
-}
+.person-actions{ display: flex; gap: 12px; align-items: center; padding-top: 18px; border-top: 1px solid var(--border); margin-top: 4px; }
+.action-link{ font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 500; }
 .action-link:hover{ color: var(--accent); }
-.action-btn{
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background 0.15s;
-}
+.action-btn{ background: var(--accent); color: white; border: none; padding: 8px 14px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.15s; }
 .action-btn:hover{ background: var(--accent-dark); }
 .action-btn.copied{ background: #047857; }
 
-/* Step 2 — Market context (two states: stub / full) */
-.step2-stub{
-  background: #F9FAFB;
-  border: 2px dashed #D1D5DB;
-  border-radius: 14px;
-  padding: 22px 28px;
-  margin-bottom: 22px;
-  text-align: center;
-}
-.step2-stub h2{
-  color: var(--ink-muted);
-  font-size: 16px;
-  margin-bottom: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.step2-stub p{
-  color: var(--ink-muted);
-  font-size: 13px;
-  margin: 0;
-}
-.step2-stub code{
-  background: white;
-  border: 1px solid var(--border);
-  padding: 2px 7px;
-  border-radius: 5px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--ink);
-}
-
-.step2-full{
-  background: linear-gradient(180deg, #EEF2FF 0%, white 60%);
-  border: 1px solid #C7D2FE;
-  border-radius: 14px;
-  padding: 30px;
-  margin-bottom: 22px;
-}
-.step2-full > h2{
-  color: #3730A3;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 4px;
-}
-.step2-full .summary-subtitle{
-  color: #4F46E5;
-}
-.market-grid{
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 14px 24px;
-  margin-bottom: 20px;
-}
-.market-grid dt{
-  color: #6366F1;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  padding-top: 2px;
-}
-.market-grid dd{
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 1.55;
-}
-.market-grid dd ul{ list-style: none; padding: 0; }
-.market-grid dd ul li{
-  padding-left: 16px;
-  position: relative;
-  margin-bottom: 4px;
-}
-.market-grid dd ul li:before{
-  content: '·';
-  position: absolute;
-  left: 4px;
-  color: #6366F1;
-  font-weight: 700;
-}
-.market-grid dd ul li.up:before{ content: '⬆'; color: #059669; }
-.market-grid dd ul li.down:before{ content: '⬇'; color: #DC2626; }
-.market-insight{
-  background: white;
-  border-left: 3px solid #4F46E5;
-  padding: 16px 20px;
-  border-radius: 0 10px 10px 0;
-  margin-top: 16px;
-}
-.market-insight-label{
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #4F46E5;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.market-insight-body{
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 1.6;
-}
-.market-sources{
-  margin-top: 14px;
-  font-size: 12px;
-  color: #6366F1;
-}
-.market-sources a{ color: #4F46E5; text-decoration: none; }
-
 /* Hiring Intelligence — compact */
-.hiring-stats{
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-}
+.hiring-stats{ font-size: 13px; color: var(--ink-muted); margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .hiring-stats a{ color: var(--accent); text-decoration: none; }
 .hiring-stats .num{ color: var(--ink); font-weight: 600; }
-
-.hiring-blocks{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 20px;
-}
-.hiring-block-label{
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-.hiring-list{
-  list-style: none;
-  padding: 0;
-}
-.hiring-list li{
-  padding-left: 16px;
-  position: relative;
-  margin-bottom: 6px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.hiring-list li:before{
-  content: '·';
-  position: absolute;
-  left: 4px;
-  color: var(--accent);
-  font-weight: 700;
-}
+.hiring-blocks{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+.hiring-block-label{ font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+.hiring-list{ list-style: none; padding: 0; }
+.hiring-list li{ padding-left: 16px; position: relative; margin-bottom: 6px; font-size: 14px; line-height: 1.5; }
+.hiring-list li:before{ content: '·'; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
 .hiring-list li.star{ font-weight: 600; color: var(--ink); }
 .hiring-list li.star:before{ content: '⭐'; left: 0; }
 .hiring-list li.gap:before{ content: '×'; color: #DC2626; font-weight: 700; }
 .hiring-list strong{ color: var(--ink); }
+.hiring-insight{ background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border-left: 3px solid #D97706; padding: 16px 20px; border-radius: 0 10px 10px 0; }
+.hiring-insight-label{ font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: #92400E; font-weight: 700; margin-bottom: 6px; }
+.hiring-insight-body{ color: #78350F; font-weight: 500; line-height: 1.55; font-size: 14px; }
 
-.hiring-insight{
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-  border-left: 3px solid #D97706;
-  padding: 16px 20px;
-  border-radius: 0 10px 10px 0;
-}
-.hiring-insight-label{
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #92400E;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.hiring-insight-body{
-  color: #78350F;
-  font-weight: 500;
-  line-height: 1.55;
-  font-size: 14px;
-}
-
-/* Collapsible details */
-details{
-  background: #F9FAFB;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-top: 18px;
-  overflow: hidden;
-}
-details summary{
-  padding: 14px 20px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--ink-muted);
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  user-select: none;
-}
-details summary::-webkit-details-marker{ display: none; }
-details summary:after{
-  content: '▾';
-  color: var(--ink-soft);
-  font-size: 14px;
-  transition: transform 0.2s;
-}
-details[open] summary:after{ transform: rotate(180deg); }
-details summary:hover{ background: #F3F4F6; }
-.details-body{
-  padding: 4px 20px 20px;
-  border-top: 1px solid var(--border);
-  background: white;
-}
-.details-body .fact-grid{
-  grid-template-columns: 180px 1fr;
-  gap: 10px 24px;
-}
+/* Collapsible details (used inside sections — NOT for LPR cards) */
+details:not(.lpr-card){ background: #F9FAFB; border: 1px solid var(--border); border-radius: 10px; margin-top: 18px; overflow: hidden; }
+details:not(.lpr-card) summary{ padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 14px; color: var(--ink-muted); list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+details:not(.lpr-card) summary::-webkit-details-marker{ display: none; }
+details:not(.lpr-card) summary:after{ content: '▾'; color: var(--ink-soft); font-size: 14px; transition: transform 0.2s; }
+details:not(.lpr-card)[open] summary:after{ transform: rotate(180deg); }
+details:not(.lpr-card) summary:hover{ background: #F3F4F6; }
+.details-body{ padding: 4px 20px 20px; border-top: 1px solid var(--border); background: white; }
+.details-body .fact-grid{ grid-template-columns: 180px 1fr; gap: 10px 24px; }
 .details-body .fact-grid dt{ font-size: 12px; }
 .details-body .fact-grid dd{ font-size: 13px; }
 
 @media (max-width: 640px){
   body{ padding: 24px 16px 64px; }
   header h1{ font-size: 28px; }
-  section{ padding: 22px 18px; }
-  .lpr-card > summary{ padding: 14px 16px; }
-  .lpr-context{ padding: 0 16px 16px; }
+  section, .step2-full, .step3-full, .person-card, .comm-card{ padding: 22px 18px; }
   .fact-grid{ grid-template-columns: 1fr; gap: 6px 0; }
   .fact-grid dd{ margin-bottom: 14px; }
+  .hiring-blocks{ grid-template-columns: 1fr; gap: 18px; }
+  .market-grid{ grid-template-columns: 1fr; gap: 6px 0; }
 }
 </style>
 </head>
@@ -716,16 +307,16 @@ details summary:hover{ background: #F3F4F6; }
 <!-- ====================== TABS ====================== -->
 <div class="tabs">
   <button class="tab-btn active" data-tab="analytics">Аналитика<span class="count">что мы знаем</span></button>
-  <button class="tab-btn" data-tab="communication">Коммуникация<span class="count">как мы пишем</span></button>
+  <button class="tab-btn" data-tab="communication">Сообщения<span class="count">как мы пишем</span></button>
 </div>
 
 <!-- ====================== TAB: АНАЛИТИКА ====================== -->
 <div class="tab-panel active" data-panel="analytics">
 
-<!-- ====================== EXECUTIVE SUMMARY (PERSON-FIRST) ====================== -->
+<!-- ====================== ГЛАВНОЕ — person-first action cards ====================== -->
 <section class="summary-section">
   <h2>Главное</h2>
-  <div class="summary-subtitle">Что нужно сказать сейлу за 10 секунд по каждому ЛПР</div>
+  <div class="summary-subtitle">Что нужно сказать сейлу за 10 секунд по каждому главному ЛПР</div>
 
 {{PERSON_CARDS}}
 </section>
@@ -733,9 +324,9 @@ details summary:hover{ background: #F3F4F6; }
 <!-- ====================== ПРОФИЛЬ КОМПАНИИ ====================== -->
 <section>
   <h2>Профиль компании</h2>
-  <dl class="fact-grid">
-{{COMPANY_FACTS_CORE}}
-  </dl>
+  <ul class="hiring-list" style="font-size: 15px;">
+{{COMPANY_FACTS_COMPACT}}
+  </ul>
 
   <details>
     <summary>Юридические и регистрационные данные</summary>
@@ -747,9 +338,9 @@ details summary:hover{ background: #F3F4F6; }
   </details>
 </section>
 
-<!-- ====================== HIRING INTELLIGENCE ====================== -->
+<!-- ====================== АКТИВНОСТЬ ПО НАЙМУ ====================== -->
 <section>
-  <h2>Hiring intelligence</h2>
+  <h2>Активность по найму</h2>
 
   <div class="hiring-stats">{{HIRING_STATS}}</div>
 
@@ -774,96 +365,30 @@ details summary:hover{ background: #F3F4F6; }
   </div>
 </section>
 
-<!-- ====================== ШАГ 1 · ЛПР LIST (с вложенным контекстом) ====================== -->
+<!-- ====================== ЛПР — раскрывающиеся карточки с вложенным контекстом ====================== -->
 <section>
   <h2>Идентифицированные ЛПР</h2>
   <p style="color: var(--ink-muted); font-size: 13px; margin-bottom: 18px;">Раскрой карточку, чтобы увидеть background, recent activity, темы и угол захода по каждому ЛПР.</p>
+
 {{LPR_CARDS}}
 </section>
 
 <!-- ====================== ШАГ 2 — MARKET CONTEXT ====================== -->
 {{STEP2_SECTION}}
 
-<!-- ====================== ШАГ 3 — LINKEDIN DEEP DIVE (paid, optional) ====================== -->
+<!-- ====================== ШАГ 3 — LINKEDIN DEEP DIVE ====================== -->
 {{STEP3_SECTION}}
-<!--
-   STATE A — STUB (после Stage 5):
-   <section class="step2-stub">
-     <h2>🔗 Шаг 3: LinkedIn deep dive — не запущен</h2>
-     <p>Требует <code>$APIFY_API_KEY</code> в .env. Скажи в чате <code>«запусти Шаг 3»</code>.</p>
-   </section>
 
-   STATE B — FULL (после Stage 9): полный LinkedIn профиль ЛПР через Apify
-   harvestapi/linkedin-profile-scraper — headline, about, образование, awards, skills,
-   recent posts, network signals.
--->
-
-<!-- ====================== ШАГ 4 — SOCIAL SIGNALS (paid, optional) ====================== -->
+<!-- ====================== ШАГ 4 — SOCIAL SIGNALS ====================== -->
 {{STEP4_SECTION}}
-<!--
-   STATE A — STUB по умолчанию.
-   STATE B — FULL: IG/FB/TikTok через tri_angle/social-media-sentiment-analysis-tool
-   (требует approval в Apify Console).
--->
 
-<!-- ====================== SOURCES (всегда в конце) ====================== -->
+<!-- ====================== ИСТОЧНИКИ ====================== -->
 <section>
   <h2>Источники</h2>
   <ul class="sources-list">
 {{SOURCES}}
   </ul>
 </section>
-<!--
-   STEP2_SECTION имеет два состояния:
-
-   STATE A — STUB (по умолчанию, после Stage 5):
-   <section class="step2-stub">
-     <h2>📍 Шаг 2: Market context — не запущен</h2>
-     <p>Добавь контекст сектора и конкурентов — скажи в чате Claude Code <code>«запусти Шаг 2»</code></p>
-   </section>
-
-   STATE B — FULL (после Stage 6, заменяет STUB):
-   <section class="step2-full">
-     <h2>📍 Шаг 2: Market context</h2>
-     <div class="summary-subtitle">Сектор, конкуренты, динамика, что из этого торчит</div>
-
-     <dl class="market-grid">
-       <dt>СЕКТОР</dt>
-       <dd>...определение сегмента...</dd>
-
-       <dt>ПОЛОЖЕНИЕ КОМПАНИИ</dt>
-       <dd>...лидер / challenger / niche / роль...</dd>
-
-       <dt>КОНКУРЕНТЫ</dt>
-       <dd>
-         <ul>
-           <li><strong>Имя</strong> — позиционирование</li>
-           ...
-         </ul>
-       </dd>
-
-       <dt>ДИНАМИКА</dt>
-       <dd>
-         <ul>
-           <li class="up">↑ что растёт</li>
-           <li class="down">↓ что давит</li>
-           ...
-         </ul>
-       </dd>
-     </dl>
-
-     <div class="market-insight">
-       <div class="market-insight-label">Что из этого торчит для нашего outreach</div>
-       <div class="market-insight-body">
-         1-2 предложения вывод-инсайт: как контекст сектора усиливает наш заход.
-       </div>
-     </div>
-
-     <div class="market-sources">
-       Источники: <a href="...">...</a>, <a href="...">...</a>
-     </div>
-   </section>
--->
 
 </div><!-- /tab-panel analytics -->
 
@@ -872,7 +397,7 @@ details summary:hover{ background: #F3F4F6; }
 
 <div class="comm-intro">
   <h2>Как менялся заход и сообщение</h2>
-  <p>Каждый шаг исследования добавляет точки персонализации → заход и сообщение становятся точнее. Свежая версия сверху, предыдущие — приглушённые ниже. <strong>Видно, как сообщение улучшается с каждым новым слоем данных.</strong></p>
+  <p>Каждый шаг исследования добавляет точки персонализации → сообщение становится точнее. Свежая версия сверху, предыдущие — приглушённые ниже. <strong>Цветная подсветка показывает, что именно добавилось на каждом шаге.</strong></p>
 </div>
 
 <!-- Methodology block: 5 quality dimensions + message anatomy + color legend -->
@@ -907,94 +432,6 @@ details summary:hover{ background: #F3F4F6; }
 </div>
 
 {{COMM_CARDS}}
-<!--
-   COMM_CARDS — повторяющиеся блоки per primary ЛПР. ВНУТРИ ТОЛЬКО одна
-   секция эволюции — `message-versions` с 4 полными версиями письма.
-   Никаких отдельных hook-блоков и никаких отдельных "Полное сообщение — эволюция"
-   разделов сверху/снизу.
-
-   Принципы:
-   - Каждая версия = ПОЛНОЕ письмо (приветствие → personal context → why now →
-     specific value → CTA → подпись).
-   - В версиях v2/v3/v4 фрагменты, которые ДОБАВИЛИСЬ относительно предыдущей
-     версии, обёрнуты в <span class="added-v2">…</span> / <span class="added-v3">…</span>
-     / <span class="added-v4">…</span> — это даёт читателю видеть diff между шагами.
-   - Текущая (latest) версия идёт первой, помечена .current (тёмный фон, акцент).
-   - Все предыдущие — .previous (приглушённые).
-   - Шаги, которые ещё не запущены, рендерятся как .stub (текстуру + объяснение).
-
-   <div class="comm-card" id="comm-{slug}">
-     <div class="comm-card-header">
-       <h3>1. Имя Фамилия</h3>
-       <div class="person-role">Должность · контакт</div>
-     </div>
-
-     <div class="message-versions">
-
-       === LATEST version (current) ===
-       <div class="message-version current">
-         <button class="copy-btn">Скопировать</button>
-         <div class="message-version-meta">
-           <span class="message-version-badge">v2 · + Рынок</span>
-           <span class="message-version-status">Текущая версия — после Шага 2</span>
-         </div>
-         <pre>{Имя}, добрый день.
-
-{Personal context от Шага 1.} <span class="added-v2">{Что добавил Шаг 2 — рыночный контекст с цифрами/датами.}</span>
-
-{Why now.} <span class="added-v2">{+ market frame.}</span> {Specific value.}
-
-{CTA — 15-20 минут, конкретный день.}
-
-С уважением,
-[Ваше имя]</pre>
-         <div class="what-changed">
-           <strong>Что изменилось в v2:</strong> 1-2 предложения объяснения, какой
-           рынок/конкурент/динамика добавилась и зачем.
-         </div>
-       </div>
-
-       === Previous version (v1 base) ===
-       <div class="message-version previous">
-         <button class="copy-btn">Скопировать</button>
-         <div class="message-version-meta">
-           <span class="message-version-badge">v1 · База (бесплатно)</span>
-           <span class="message-version-status">Предыдущая версия — после Шага 1</span>
-         </div>
-         <pre>{Имя}, добрый день.
-
-{Personal context.}
-
-{Why now. Specific value.}
-
-{CTA.}
-
-С уважением,
-[Ваше имя]</pre>
-       </div>
-
-       === v3 stub (LinkedIn ещё не запущен) ===
-       <div class="message-version stub">
-         <div class="message-version-meta">
-           <span class="message-version-badge">v3 · + LinkedIn</span>
-           <span class="message-version-status">Шаг 3 не запущен</span>
-         </div>
-         <pre>Требует $APIFY_API_KEY. После запуска: personal context превратится из
-company-level в people-level («видел ваш пост от X числа про Y»).</pre>
-       </div>
-
-       === v4 stub (Social ещё не запущен) ===
-       <div class="message-version stub">
-         <div class="message-version-meta">
-           <span class="message-version-badge">v4 · + Соцсети</span>
-           <span class="message-version-status">Шаг 4 не запущен</span>
-         </div>
-         <pre>IG/FB/TikTok через Apify. Для CEO B2B-retail обычно мало добавляет.</pre>
-       </div>
-
-     </div>
-   </div>
--->
 
 </div><!-- /tab-panel communication -->
 
@@ -1013,7 +450,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// Copy buttons inside .message-version blocks on Communication tab (next to a <pre>)
+// Copy buttons (next to a <pre>)
 document.querySelectorAll('.copy-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const text = btn.parentElement.querySelector('pre').textContent;
@@ -1021,39 +458,31 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
       const original = btn.textContent;
       btn.textContent = '✓ Скопировано';
       btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.classList.remove('copied');
-      }, 1800);
+      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1800);
     });
   });
 });
 
-// "Раскрыть контекст ↓" links in Executive Summary — expand the target LPR card and scroll to it.
+// "Подробное досье ↓" — expand the target LPR <details> on Analytics and scroll to it
 document.querySelectorAll('.action-link[href^="#lpr-"]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
-    // Ensure we're on the Analytics tab
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'analytics'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === 'analytics'));
-    // Expand the details element
     target.open = true;
-    // Scroll to it with a small offset for the sticky tabs
     setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   });
 });
 
-// "Перейти к письму →" buttons in Executive Summary — switch to Communication tab and scroll to the comm-card.
+// "→ Как менялся заход и сообщение" — switch to Communication tab and scroll to the comm-card
 document.querySelectorAll('.go-to-message').forEach(btn => {
   btn.addEventListener('click', () => {
     const target = document.querySelector(btn.dataset.target);
     if (!target) return;
-    // Switch to Communication tab
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'communication'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === 'communication'));
-    // Scroll to it
     setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   });
 });
@@ -1064,165 +493,211 @@ document.querySelectorAll('.go-to-message').forEach(btn => {
 <!-- ===================================================================
 TEMPLATE PLACEHOLDERS — substitute when generating report:
 
-{{COMPANY_NAME}}    — полное название компании
-{{BIN}}             — БИН
-{{TIMESTAMP}}       — дата+время в формате "20 мая 2026, 14:30"
-{{STACK_TAG}}       — короткий тег "free" / "free+apify" / "free+goszakup"
-{{STACK}}           — полная фраза "free стек" / "free + apify + goszakup"
-{{RUNTIME}}         — "~90 сек" / "~2 мин"
+{{COMPANY_NAME}}     — полное название компании
+{{BIN}}              — БИН
+{{TIMESTAMP}}        — дата+время в формате «20 мая 2026, 14:30»
+{{STACK_TAG}}        — короткий тег «бесплатные источники» / «бесплатные + Apify»
+{{STACK}}            — полная фраза для футера
+{{RUNTIME}}          — «~90 сек» / «~2 мин»
 
-{{PERSON_CARDS}}        — 1-3 повторяющихся person-action блока (по primary ЛПР).
-                          Структура каждого блока — для сейла за 10 секунд:
+—————————————————————————————————————————————————————
+{{PERSON_CARDS}} — 1-3 повторяющихся блока на ГЛАВНЫХ ЛПР (только primary).
+                   Структура «10-секундной карточки для сейла»:
 
 <div class="person-card">
   <div class="person-header">
     <div class="person-num">1</div>
     <div class="person-id">
       <h3>Имя Фамилия</h3>
-      <div class="person-role">Должность · контакт (LinkedIn / Telegram / Instagram если есть)</div>
+      <div class="person-role">Должность · контакт (LinkedIn / Telegram / email если есть)</div>
     </div>
-    <span class="tier-badge primary">Primary</span>
+    <span class="tier-badge primary">Главный</span>
   </div>
 
   <div class="person-block">
-    <div class="block-label">В приоритете сейчас</div>
-    <ul class="person-list">
-      <li>Приоритет 1 (конкретный, recent, с источником)</li>
-      <li>Приоритет 2</li>
-      <li>Приоритет 3</li>
-    </ul>
-  </div>
-
-  <div class="person-block">
-    <div class="block-label">С чего зайти</div>
+    <div class="block-label">⭐ С чего зайти</div>
     <div class="block-body">
-      Одно событие/факт + опорная фраза. Откуда взято и почему именно это.
+      Одно конкретное событие/факт + опорная фраза. Откуда взято и почему именно это.
+    </div>
+  </div>
+
+  <div class="person-block">
+    <div class="block-label">Что для него важно</div>
+    <div class="block-body">
+      2-4 факта о его текущих приоритетах. Можно с прямой цитатой.
     </div>
   </div>
 
   <div class="person-block intersection">
-    <div class="block-label">Стык с нашим оффером</div>
+    <div class="block-label">Где совпадаем с его задачами</div>
     <div class="block-body">
-      Где наш оффер пересекается с их фокусом. Сжато, 1-2 предложения.
+      Где наш оффер пересекается с его фокусом. 1-2 предложения. БЕЗ этого карточка бесполезна.
     </div>
   </div>
 
   <div class="person-actions">
-    <a class="action-link" href="#lpr-{{slug}}">Раскрыть контекст ↓</a>
-    <button class="action-btn go-to-message" data-target="#comm-{{slug}}">Перейти к письму →</button>
+    <a class="action-link" href="#lpr-{slug}">Подробное досье ↓</a>
+    <button class="action-btn go-to-message" data-target="#comm-{slug}">→ Как менялся заход и сообщение</button>
   </div>
 </div>
 
-Tier-badge классы: primary (главный buyer — заполненный зелёный)
-                   secondary (gatekeeper / co-decision — outlined зелёный)
+Правила:
+- 1-3 person-card максимум, ТОЛЬКО primary ЛПР
+- Secondary ЛПР НЕ попадают в «Главное» — только в {{LPR_CARDS}} ниже
+- href="#lpr-{slug}" должен совпадать с id у <details class="lpr-card"> ниже
+- data-target="#comm-{slug}" должен совпадать с id у <div class="comm-card"> на Коммуникация
+- Внутри person-card НЕ используем <span class="added-v*"> — подсветка только для message-version блоков
 
-Принципы person-cards:
-- 1-3 cards максимум, только PRIMARY ЛПР
-- Secondary ЛПР → только в «Идентифицированные ЛПР» list section (без действий)
-- «В приоритете сейчас» = 2-4 буллета конкретных recent фактов с датами/именами
-- «С чего зайти» = ОДНО событие + опорная фраза, не список
-- «Стык с нашим оффером» = ВСЕГДА — без этого карточка бесполезна для сейла
-- href="#lpr-{slug}" указывает на раскрывающуюся LPR card (внутри секции «Идентифицированные ЛПР»);
-  JS при клике раскроет details и прокрутит к нему.
-- data-target="#comm-{slug}" указывает на comm-card на вкладке «Коммуникация»;
-  JS переключит вкладку и прокрутит к нужной person card.
+—————————————————————————————————————————————————————
+{{COMPANY_FACTS_COMPACT}} — 2-4 <li> с самыми важными фактами:
+<li><strong>Сектор + размер + локация</strong></li>
+<li><strong>Свежие события (2024-2026):</strong> ...</li>
+<li><strong>Клиенты / партнёры:</strong> ...</li>
 
-{{STEP2_SECTION}}       — section про Шаг 2 (market context). ДВА состояния:
+{{COMPANY_FACTS_LEGAL}} — collapsible fact-grid с регистрационными данными:
+<dt>Полное юр. название</dt><dd>...</dd>
+<dt>БИН</dt><dd>...</dd>
+<dt>Статус</dt><dd>...</dd>
+<dt>Директор</dt><dd>...</dd>
+... и т.д.
 
-  STATE A — STUB (после Stage 5, по умолчанию):
-    Маленький <section class="step2-stub"> placeholder.
-    Сигнализирует пользователю что Шаг 2 доступен — но не запускается автоматически.
-    Триггер запуска: пользователь в чате Claude Code говорит «запусти Шаг 2».
+—————————————————————————————————————————————————————
+{{HIRING_STATS}} — одна строка (~80-120 символов):
+"<span class='num'>N вакансий</span> · Астана X / Алматы Y · ЗП A–B ₸ · <a href='hh.kz/...'>источник</a>"
 
-  STATE B — FULL (после Stage 6, заменяет STUB):
-    <section class="step2-full"> с реальным market research контентом.
-    Заполненный market-grid (сектор / положение / конкуренты / динамика)
-    + market-insight блок («что из этого торчит для outreach»)
-    + market-sources (ссылки на использованные источники).
+{{HIRING_WHO}} — 3-5 <li> «кого нанимают»; для критичных — class="star":
+<li>Клиентский сервис — <strong>4 роли</strong> (треть всех вакансий)</li>
+<li class="star">Руководитель международных партнёрских продаж (старший, 6+)</li>
 
-  Stage 5 вставляет STUB. Stage 6+7 переписывают на FULL.
-
-{{COMPANY_FACTS_CORE}}  — КОМПАКТНЫЙ блок: что важно для outreach.
-                          Например: Сектор, Продукт, Размер, География,
-                          Ключевые клиенты, Recent события 2024-2026.
-
-{{COMPANY_FACTS_LEGAL}} — collapsible блок: формальные/регистрационные данные.
-                          БИН, юр. название, директор юр.лица, дата регистрации,
-                          адрес, ОКЭД, VAT, Astana Hub, регистрирующий орган.
-
-{{HIRING_STATS}}        — одна строка статистики (~80-120 символов):
-                          "<span class='num'>N вакансий</span> · Астана X / Алматы Y · ЗП Aк–BМ ₸ · <a href='hh.kz/...'>источник</a>"
-
-{{HIRING_WHO}}          — 3-5 <li> «кого нанимают»: группировка по функциям + ⭐ для критичных ролей:
-<li>Customer Success — <strong>4 роли</strong> (треть всех вакансий)</li>
-<li>Engineering — 3 роли (Frontend, PHP, SysAdmin)</li>
-<li class="star">Руководитель международных партнёрских продаж (senior 6+)</li>
-
-{{HIRING_GAPS}}         — 2-3 <li class="gap"> «где НЕТ людей»: значимые отсутствия:
+{{HIRING_GAPS}} — 2-3 <li class="gap"> «где НЕТ людей»:
 <li class="gap">0 AI/ML — внутренняя команда укомплектована</li>
-<li class="gap">0 системных Sales (только 1 partnership)</li>
 
-{{HIRING_MEANING}}      — 1-2 предложения: ЧТО это значит для нашего outreach.
-                          Не дублирует bullets. Добавляет интерпретацию.
-                          Пример: «Скейлят CS на существующей базе + формируют
-                          новую международную партнёрскую функцию после
-                          интеграции с Контур. Sales infrastructure ещё не
-                          построена — окно открыто, тулсы можно встроить
-                          ДО legacy.»
+{{HIRING_MEANING}} — 1-2 короткие фразы вывода (не дублирует bullets).
 
-{{LPR_CARDS}}       — повторяющиеся раскрывающиеся блоки <details> per ЛПР.
-                      Summary — компактная карточка (имя/роль/why), на клик раскрывается
-                      контекст (background, recent activity, themes, угол захода).
-                      ЧЕРНОВИКА ПИСЬМА ВНУТРИ НЕТ — он живёт только на вкладке Коммуникация.
+—————————————————————————————————————————————————————
+{{LPR_CARDS}} — раскрывающиеся <details class="lpr-card" id="lpr-{slug}"> per ЛПР.
+                 Внутри: <summary> (компактная карточка) + <div class="lpr-context"> (full dossier).
+                 Включает ВСЕХ найденных ЛПР (primary и secondary).
+                 Контекст для secondary может быть пустым (<span class="no-data">…</span>).
+                 **Черновика письма внутри НЕТ** — он только на Коммуникация.
 
-<details class="lpr-card" id="lpr-{slug}">
+<details class="lpr-card" id="lpr-{slug}" open>
   <summary>
     <div class="num">1</div>
     <div class="body">
       <strong>Имя Фамилия</strong>
-      <div class="role">Должность</div>
-      <div class="why">Почему ЛПР для нашего оффера</div>
+      <div class="role">Должность · контакт · Главный / Второстепенный</div>
+      <div class="why">Почему этот человек ЛПР для нашего оффера. 1 предложение.</div>
     </div>
   </summary>
-
   <div class="lpr-context">
     <div class="section-row">
       <div class="section-label">Background</div>
-      <div>1-2 предложения: опыт, путь, ключевые роли</div>
+      <div>...биография, карьера, образование...</div>
     </div>
-
     <div class="section-row">
-      <div class="section-label">Recent activity (3-6 мес)</div>
+      <div class="section-label">Recent activity (последние 3-6 мес)</div>
       <ul>
         <li>событие 1 (с датой и источником)</li>
         <li>событие 2</li>
       </ul>
     </div>
-
     <div class="section-row">
-      <div class="section-label">Themes</div>
-      <div>о чём консистентно говорит публично</div>
+      <div class="section-label">Themes — о чём консистентно говорит</div>
+      <div>...темы, цитаты, скиллы...</div>
     </div>
-
     <div class="angle-box">
       <div class="angle-label">Угол захода</div>
-      <div class="angle-body">...пересечение их контекста × наш оффер</div>
+      <div class="angle-body">...пересечение их контекста × наш оффер...</div>
     </div>
   </div>
 </details>
 
-ВАЖНО: id="lpr-{slug}" должен совпадать с href в person-actions у Executive Summary.
-       Slug — транслит фамилии или имя_фамилия (например, "id=lpr-provkin").
+—————————————————————————————————————————————————————
+{{STEP2_SECTION}} / {{STEP3_SECTION}} / {{STEP4_SECTION}} — каждый имеет ДВА состояния:
 
-DOSSIERS plain — больше НЕ генерируется отдельно. Весь контекст находится внутри
-                 раскрывающихся LPR_CARDS, и нет h2 «Контекст и сообщения».
+  STATE A — STUB (по умолчанию):
+    <section class="step2-stub">
+      <h2>📍 Шаг N: Название — не запущен</h2>
+      <p>Описание + триггер «запусти Шаг N»</p>
+    </section>
 
-{{SOURCES}}         — повторяющиеся <li>:
+  STATE B — FULL (после соответствующего Stage):
+    <section class="step2-full"> (для Шага 2)
+    <section class="step3-full"> (для Шага 3 — зелёный variant)
+    Внутри: market-grid + market-insight + market-sources.
+
+  Для Шага 3 (LinkedIn) FULL содержит:
+  - market-insight с ключевой цитатой ЛПР
+  - <ul class="hiring-list" style="font-size:15px"> с 3-5 ключевыми фактами
+  - <details> с полным LinkedIn профилем (свёрнут)
+  - market-sources с указанием actor'а Apify и стоимости
+
+—————————————————————————————————————————————————————
+{{SOURCES}} — все использованные URL из всех стейджей:
 <li><span class="label">adata.kz:</span><a href="...">...</a></li>
+<li><span class="label">hh.kz:</span><a href="...">...</a></li>
 
-Для unconfirmed данных используй CSS class "unconfirmed":
-<dd><span class="unconfirmed">не подтверждено</span></dd>
+—————————————————————————————————————————————————————
+{{COMM_CARDS}} — per PRIMARY ЛПР на Коммуникация.
+                 Внутри ТОЛЬКО `.message-versions` с полными письмами.
+                 НИКАКИХ отдельных hook-блоков.
 
-Для пустых данных:
-<div class="no-data">данные недоступны на free-стеке</div>
+<div class="comm-card" id="comm-{slug}">
+  <div class="comm-card-header">
+    <h3>1. Имя Фамилия</h3>
+    <div class="person-role">Должность · контакт</div>
+  </div>
+
+  <div class="evolution-section">
+    <div class="message-versions">
+
+      <!-- Самая свежая (current) — сверху -->
+      <div class="message-version current">
+        <button class="copy-btn">Скопировать</button>
+        <div class="message-version-meta">
+          <span class="message-version-badge">v{N} · + {Layer}</span>
+          <span class="message-version-status">Текущая версия</span>
+        </div>
+        <pre>{Полное письмо с подсветкой <span class="added-v2">market</span>,
+<span class="added-v3">LinkedIn</span>, <span class="added-v4">social</span>.}</pre>
+        <div class="what-changed">
+          <strong>Что изменилось vs предыдущей версии:</strong> 1-2 предложения.
+        </div>
+      </div>
+
+      <!-- Предыдущие — приглушённые -->
+      <div class="message-version previous">
+        <button class="copy-btn">Скопировать</button>
+        <div class="message-version-meta">
+          <span class="message-version-badge">v{N-1} · + {Layer}</span>
+          <span class="message-version-status">Предыдущая версия</span>
+        </div>
+        <pre>{Полное письмо без последней добавки.}</pre>
+      </div>
+
+      <!-- Stub для незапущенных шагов -->
+      <div class="message-version stub">
+        <div class="message-version-meta">
+          <span class="message-version-badge">v{N+1} · + {Layer}</span>
+          <span class="message-version-status">Шаг {N+1} не запущен</span>
+        </div>
+        <pre>Описание, что добавится после следующего шага.</pre>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+Принципы:
+- 1 comm-card на каждого PRIMARY ЛПР (если 2 primary → 2 comm-card)
+- Внутри: ТОЛЬКО message-versions. Никаких hook-versions. Никаких отдельных «С чего зайти» блоков.
+- Каждая версия = ПОЛНОЕ письмо.
+- В v2/v3/v4 добавки относительно предыдущей версии обёрнуты в <span class="added-v{N}">…</span>
+- what-changed появляется ТОЛЬКО под current.
+
+—————————————————————————————————————————————————————
+Для unconfirmed/пустых данных:
+<span class="unconfirmed">не подтверждено</span>
+<span class="no-data">данные недоступны на бесплатном стеке</span>
 ================================================================ -->
