@@ -1,23 +1,27 @@
-# AI Sales Toolkit
+# AI Camp · Enrich and Pitch
 
-Практические AI-инструменты для команд продаж — для участников **AI Camp Almaty 2026**, сессия «AI в продажах на практике».
+Claude Skill для outbound-разведки B2B-клиентов в Казахстане: досье на компанию + готовое opening-сообщение под ЛПР.
 
-Спикер: **Дмитрий Коробовцев**, AI Surfers
-
-> **Статус:** v0.1 (work in progress). Block 1 в активной разработке к моменту начала кэмпа.
+Один из 4 воркшопов сессии **«AI в продажах на практике»** — AI Camp Almaty 2026.
+Спикер: **Дмитрий Коробовцев**, AI Surfers.
 
 ---
 
-## Что внутри
+## Что делает
 
-4 практических блока — каждый = end-to-end AI-инструмент, который ты можешь запустить на своих данных и получить результат сегодня.
+```
+/enrich-and-pitch Globalink Logistics. Мы продаём: AI-инструменты для отдела продаж.
+```
 
-| # | Блок | AI-механика | Что получаешь | Статус |
-|---|---|---|---|---|
-| **1** | **Outbound** — обогащение + персонализированная коммуникация | Агентная разведка | Досье на компанию + 1-3 готовых opening сообщения под конкретных ЛПР | 🟡 In progress |
-| **2** | **Inbound** — скоринг входящих лидов + auto-reply | Скоринг + автоматизация | Score + reasoning + готовый ответ + флаг эскалации | ⚪ Coming soon |
-| **3** | **Diagnose** — почему сделки не закрываются | Диагностика корневых причин | Карта пайплайна с «дырявыми» переходами + гипотезы + проверки | ⚪ Coming soon |
-| **4** | **Coach** — коучинг команды на их же диалогах | Анализ + обратная связь | Структурный фидбек по диалогу с клиентом + что упустил + что сказать иначе | ⚪ Coming soon |
+Skill:
+1. Подтверждает, что нашёл именно ту компанию (особенно важно для KZ — много омонимов в реестре)
+2. Делает 4-стадийную разведку (free-стек по умолчанию, paid опционально)
+3. Извлекает SPSV-материал (Ситуация / Проблема / Решение / Ценность)
+4. Формирует hook через 3 итерации с показом изменений
+5. Рендерит HTML-отчёт с двумя вкладками: «Аналитика» + «Коммуникация»
+6. Автоматически открывает отчёт в браузере
+
+Время от вызова до отчёта: 60-120 секунд.
 
 ---
 
@@ -32,52 +36,53 @@
 ### Запуск
 
 ```bash
-git clone https://github.com/dkoraitest/ai_camp_almaty.git
-cd ai_camp_almaty
+git clone https://github.com/dkoraitest/ai-camp-enrich-and-pitch.git
+cd ai-camp-enrich-and-pitch
 code .
 ```
 
-В VS Code открывается репо со встроенным Claude Code. Дальше — вызывай нужный skill из чата:
+В VS Code откроется репо со встроенным Claude Code. Вызывай skill из чата:
 
 ```
-/enrich-and-pitch Globalink Logistics. Мы продаём: AI-инструменты для отдела продаж.
-```
-
-Skill сделает свою работу (60-120 сек) и **автоматически откроет HTML-отчёт** в браузере.
-
----
-
-## Структура репозитория
-
-```
-ai-sales-toolkit/
-├── .claude/skills/                    # Claude Code skills (агентные)
-│   └── enrich-and-pitch/              # Block 1
-│       ├── SKILL.md
-│       └── templates/report.html
-│
-├── 01-outbound-enrichment-comms/      # Block 1 — README, examples, monday-action
-├── 02-inbound-scoring/                # Block 2 (coming)
-├── 03-conversion-diagnosis/           # Block 3 (coming)
-├── 04-team-coaching/                  # Block 4 (coming)
-│
-├── reports/                           # Тут появляются твои HTML-отчёты (в .gitignore)
-├── README.md
-└── LICENSE
+/enrich-and-pitch <название компании>. Мы продаём: <что мы продаём>.
 ```
 
 ---
 
 ## Free стек vs опциональные платные интеграции
 
-Все skills работают **out-of-the-box на free-стеке** (WebSearch, WebFetch, adata.kz, hh.kz, telegram-channel-parser). Не требуют API-ключей.
+Skill работает **out-of-the-box на free-стеке** (WebSearch, WebFetch, adata.kz, hh.kz). Не требует API-ключей.
 
 Для **продвинутого качества** можно подключить:
-- **Apify** — глубокие LinkedIn данные ЛПР ($0.10-0.50/запрос)
-- **goszakup.gov.kz token** — история госзакупок компаний (бесплатно, но нужна заявка)
+- **Apify** — глубокие LinkedIn данные ЛПР (~$0.10-0.50/запрос)
+- **goszakup.gov.kz token** — история госзакупок компаний (бесплатно, нужна заявка)
 - **Scrape.do** — обход блокировок ($0.10-1/запрос)
 
-Подробности в `OPTIONAL-UPGRADES.md` каждого блока.
+Skill автоопределяет наличие env-ключей и переключается на paid-режим, если они есть.
+
+---
+
+## Структура репозитория
+
+```
+ai-camp-enrich-and-pitch/
+├── .claude/skills/enrich-and-pitch/
+│   ├── SKILL.md                       # сам скилл
+│   └── templates/report.html          # HTML-шаблон отчёта
+├── reports/                           # тут появляются твои HTML-отчёты (в .gitignore)
+├── README.md
+└── LICENSE
+```
+
+---
+
+## Другие воркшопы AI Camp Almaty 2026
+
+Этот репо — 1 из 4. Остальные воркшопы — отдельные репозитории:
+
+- **[ai-camp-info-helper](https://github.com/dkoraitest/ai-camp-info-helper)** — Claude Skill с cron-запуском: утренние поводы касания по списку клиентов
+- **[ai-camp-lead-scoring](https://github.com/dkoraitest/ai-camp-lead-scoring)** — Промпт + методология приоритизации входящих лидов для РОПа
+- **[ai-camp-proposal-template](https://github.com/dkoraitest/ai-camp-proposal-template)** — Skill `make-proposal`: транскрипт звонка → SPSV → research → brainstorming → HTML КП
 
 ---
 
