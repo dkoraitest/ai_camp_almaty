@@ -537,6 +537,8 @@ TEMPLATE PLACEHOLDERS — substitute when generating report:
 
   <div class="person-actions">
     <a class="action-link" href="#lpr-{slug}">Подробное досье ↓</a>
+    === Кнопка "Перейти к письму" ТОЛЬКО для главного ЛПР (top-1 primary, по правилу выбора из SKILL.md / Stage 4a).
+        Для остальных primary в Executive Summary эту кнопку НЕ добавляем — у них только action-link на досье. ===
     <button class="action-btn go-to-message" data-target="#comm-{slug}">→ Как менялся заход и сообщение</button>
   </div>
 </div>
@@ -546,6 +548,7 @@ TEMPLATE PLACEHOLDERS — substitute when generating report:
 - Secondary ЛПР НЕ попадают в «Главное» — только в {{LPR_CARDS}} ниже
 - href="#lpr-{slug}" должен совпадать с id у <details class="lpr-card"> ниже
 - data-target="#comm-{slug}" должен совпадать с id у <div class="comm-card"> на Коммуникация
+- **Кнопка "→ Как менялся заход и сообщение" — ТОЛЬКО у главного primary ЛПР (top-1).** У других primary в Executive Summary остаётся только action-link "Подробное досье ↓"
 - Внутри person-card НЕ используем <span class="added-v*"> — подсветка только для message-version блоков
 
 —————————————————————————————————————————————————————
@@ -639,9 +642,14 @@ TEMPLATE PLACEHOLDERS — substitute when generating report:
 <li><span class="label">hh.kz:</span><a href="...">...</a></li>
 
 —————————————————————————————————————————————————————
-{{COMM_CARDS}} — per PRIMARY ЛПР на Коммуникация.
-                 Внутри ТОЛЬКО `.message-versions` с полными письмами.
-                 НИКАКИХ отдельных hook-блоков.
+{{COMM_CARDS}} — РОВНО ОДНА `.comm-card` для ГЛАВНОГО primary ЛПР (top-1).
+                 Правило выбора top-1 описано в SKILL.md / Stage 4a:
+                 1) выше по иерархии (CEO > C-level > VP > Head > Director > Manager),
+                 2) при равном уровне — у кого final budget authority по нашему офферу,
+                 3) при равной authority — у кого больше recent activity за 30 дней.
+                 Если primary только один — он и есть главный.
+                 Внутри `.comm-card` ТОЛЬКО `.message-versions` с полными письмами.
+                 НИКАКИХ отдельных hook-блоков. Для остальных primary ЛПР `.comm-card` НЕ генерируется.
 
 <div class="comm-card" id="comm-{slug}">
   <div class="comm-card-header">
